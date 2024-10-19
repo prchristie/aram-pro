@@ -102,7 +102,7 @@ export function ChampionPage() {
       setSelectableBuilds(bs)
       setSelectedBuild(bs[0])
     })
-  })
+  }, [champion])
 
   return (
     <div>
