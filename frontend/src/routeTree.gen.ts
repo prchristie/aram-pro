@@ -22,11 +22,13 @@ const ChampionNameLazyImport = createFileRoute('/champion/$name')()
 // Create/Update Routes
 
 const IndexLazyRoute = IndexLazyImport.update({
+  id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
 const ChampionNameLazyRoute = ChampionNameLazyImport.update({
+  id: '/champion/$name',
   path: '/champion/$name',
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>

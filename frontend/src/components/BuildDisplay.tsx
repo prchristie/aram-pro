@@ -1,6 +1,5 @@
 import { Build, Rune, RunePage } from "../types/build.types";
 import {Image} from "../components/Image"
-import { getRunes } from "../services/lol";
 
 export function BuildDisplay(props: { build: Build }) {
   return (
@@ -21,11 +20,11 @@ function RunePageDisplay(props: { runePage: RunePage }) {
   </>;
 }
 
-function RunePath(props: {name: string}) {
-  // const runes = await getRunes()
-  return <></>
+// function RunePath(_props: {name: string}) {
+//   // const runes = await getRunes()
+//   return <></>
 
-}
+// }
 
 function RuneIcon(props: {rune: Rune}) {
   return <Image src={props.rune.iconUrl}/>
