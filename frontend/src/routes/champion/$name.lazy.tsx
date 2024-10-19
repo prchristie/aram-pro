@@ -1,4 +1,4 @@
-import { createFileRoute, createLazyFileRoute } from '@tanstack/react-router'
+import { createLazyFileRoute } from '@tanstack/react-router'
 import { Champion } from '../../services/lol'
 import RedirectableChampionSplash from '../../components/search/RedirectableChampionSplash'
 import { CSSProperties, useEffect, useMemo, useState } from 'react'

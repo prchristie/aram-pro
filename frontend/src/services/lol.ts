@@ -43,10 +43,11 @@ export async function getLatestVersion() {
   return data[0];
 }
 
-const VERSION = await getLatestVersion();
+
 
 export async function fetchChampions(): Promise<Champion[]> {
-  const url = `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/en_US/champion.json`;
+  const version = await getLatestVersion();
+  const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
 
   const res = await axios.get<GetChampionsResponse>(url);
   const data = res.data;
@@ -54,12 +55,14 @@ export async function fetchChampions(): Promise<Champion[]> {
 
   return Object.values(champions).map((champion) => ({
     name: champion.name,
-    portraitUrl: `https://ddragon.leagueoflegends.com/cdn/${VERSION}/img/champion/${champion.id}.png`,
+    portraitUrl: `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion.id}.png`,
   }));
 }
 
 export async function getRunes() {
-  const url = `https://ddragon.leagueoflegends.com/cdn/${VERSION}/data/en_US/runesReforged.json`;
+  const version = await getLatestVersion();
+
+  const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
 
   const res = await axios.get<GetRunesResponse>(url);
 
