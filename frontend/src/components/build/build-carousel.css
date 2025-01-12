@@ -3,12 +3,10 @@
 }
 
 .build-carousel {
-  max-width: 100%;
   display: flex;
   gap: 10px;
-  overflow-x: scroll;
+  overflow-x: auto;
   scrollbar-color: #8b9d83 #6a7b76;
-  scrollbar-width: 30px;
 }
 
 .carousel-item {

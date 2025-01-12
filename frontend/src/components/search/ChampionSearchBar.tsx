@@ -38,7 +38,9 @@ export default function ChampionSearchBar() {
         style={{
           position: "absolute",
           top: "100%",
+          left: "0",
           width: "100%",
+          zIndex: 10
         }}
       >
         <ChampionGrid

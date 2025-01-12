@@ -77,95 +77,33 @@ export async function fetchChampionByName(name: string): Promise<Champion> {
   };
 }
 
+function createBuildList(size: number) {
+  const output: Build[] = []
+  for(let i = 0; i < size; i++) {
+    output.push(
+      {
+        games: 10000,
+        runes: {
+          primaryRune: {
+            icon: {
+              url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
+            },
+            name: "Eletrocute",
+          },
+          secondaryRuneIcon: {
+            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+          },
+        },
+        winRate: 100,
+      }
+    )
+  }
+
+  return output;
+}
+
 export async function fetchBuildsForChamp(name: string): Promise<Build[]> {
-  return [
-    {
-      games: 10000,
-      runes: {
-        primaryRune: {
-          icon: {
-            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-          },
-          name: "Eletrocute",
-        },
-        secondaryRuneIcon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-        },
-      },
-      winRate: 100,
-    },
-    {
-      games: 1000,
-      runes: {
-        primaryRune: {
-          icon: {
-            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-          },
-          name: "Eletrocute",
-        },
-        secondaryRuneIcon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-        },
-      },
-      winRate: 100,
-    },{
-      games: 1000,
-      runes: {
-        primaryRune: {
-          icon: {
-            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-          },
-          name: "Eletrocute",
-        },
-        secondaryRuneIcon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-        },
-      },
-      winRate: 100,
-    },{
-      games: 1000,
-      runes: {
-        primaryRune: {
-          icon: {
-            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-          },
-          name: "Eletrocute",
-        },
-        secondaryRuneIcon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-        },
-      },
-      winRate: 100,
-    },{
-      games: 1000,
-      runes: {
-        primaryRune: {
-          icon: {
-            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-          },
-          name: "Eletrocute",
-        },
-        secondaryRuneIcon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-        },
-      },
-      winRate: 100,
-    },{
-      games: 1000,
-      runes: {
-        primaryRune: {
-          icon: {
-            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-          },
-          name: "Eletrocute",
-        },
-        secondaryRuneIcon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-        },
-      },
-      winRate: 100,
-    },
-  ];
+  return createBuildList(2)
 }
 
 export function useChampionBuilds(name: string) {
