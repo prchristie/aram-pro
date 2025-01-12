@@ -3,12 +3,12 @@ import { useChampion } from "../../services/lol";
 
 export const Route = createFileRoute("/champion/$name")({
   component: () => {
-    return <ChampionPage />;
+    return <BuildPage />;
   },
   pendingComponent: () => <>loading</>,
 });
 
-export function ChampionPage() {
+export function BuildPage() {
   const params = Route.useParams();
   const champion = useChampion(params.name);
 
