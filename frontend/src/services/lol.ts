@@ -89,7 +89,22 @@ export async function fetchBuildsForChamp(name: string): Promise<Build[]> {
           name: "Eletrocute",
         },
         secondaryRuneIcon: {
-          url: "https://github.com/InFinity54/LoL_DDragon/blob/master/img/perk-images/Styles/7204_Resolve.png",
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+        },
+      },
+      winRate: 100,
+    },
+    {
+      games: 1000,
+      runes: {
+        primaryRune: {
+          icon: {
+            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
+          },
+          name: "Eletrocute",
+        },
+        secondaryRuneIcon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
         },
       },
       winRate: 100,
