@@ -35,7 +35,7 @@ function BuildPage() {
           width={128}
           height={128}
         />
-        <div style={{flex: "1"}}><BuildCarousel builds={builds.data} /></div>
+        <div style={{flex: "1", maxWidth: "100%"}}><BuildCarousel builds={builds.data} /></div>
       </div>
     </div>
   );

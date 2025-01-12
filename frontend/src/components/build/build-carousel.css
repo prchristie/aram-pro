@@ -3,9 +3,12 @@
 }
 
 .build-carousel {
-  width: 100%;
+  max-width: 100%;
   display: flex;
   gap: 10px;
+  overflow-x: scroll;
+  scrollbar-color: #8b9d83 #6a7b76;
+  scrollbar-width: 30px;
 }
 
 .carousel-item {
@@ -13,6 +16,10 @@
   padding: 8px;
   border-radius: 5px;
   display: flex;
+  justify-content: space-between;
   gap: 15px;
   border: none;
+  width: 220px;
+  flex-basis: baseline;
+  flex-shrink: 0;
 }

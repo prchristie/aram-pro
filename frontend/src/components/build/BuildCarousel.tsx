@@ -24,6 +24,7 @@ export function BuildCarousel({ builds }: Props) {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
+                height: "100%"
               }}
             >
               <p
@@ -34,7 +35,10 @@ export function BuildCarousel({ builds }: Props) {
               >
                 {b.winRate}%
               </p>
-              <div>
+              <div style={{
+                color: "gray",
+                fontSize: "0.9rem"
+              }}>
                 <p>{b.games}</p>
                 <p>Games</p>
               </div>

@@ -80,7 +80,7 @@ export async function fetchChampionByName(name: string): Promise<Champion> {
 export async function fetchBuildsForChamp(name: string): Promise<Build[]> {
   return [
     {
-      games: 1000,
+      games: 10000,
       runes: {
         primaryRune: {
           icon: {
@@ -95,6 +95,62 @@ export async function fetchBuildsForChamp(name: string): Promise<Build[]> {
       winRate: 100,
     },
     {
+      games: 1000,
+      runes: {
+        primaryRune: {
+          icon: {
+            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
+          },
+          name: "Eletrocute",
+        },
+        secondaryRuneIcon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+        },
+      },
+      winRate: 100,
+    },{
+      games: 1000,
+      runes: {
+        primaryRune: {
+          icon: {
+            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
+          },
+          name: "Eletrocute",
+        },
+        secondaryRuneIcon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+        },
+      },
+      winRate: 100,
+    },{
+      games: 1000,
+      runes: {
+        primaryRune: {
+          icon: {
+            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
+          },
+          name: "Eletrocute",
+        },
+        secondaryRuneIcon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+        },
+      },
+      winRate: 100,
+    },{
+      games: 1000,
+      runes: {
+        primaryRune: {
+          icon: {
+            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
+          },
+          name: "Eletrocute",
+        },
+        secondaryRuneIcon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+        },
+      },
+      winRate: 100,
+    },{
       games: 1000,
       runes: {
         primaryRune: {
