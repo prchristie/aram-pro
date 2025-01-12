@@ -51,14 +51,16 @@ export async function fetchChampions(): Promise<Champion[]> {
 
   const res = await axios.get<GetChampionsResponse>(url);
   const data = res.data;
-  const champions = data.data;
+  const champions = new Map(Object.entries(data.data));
 
-  return Array.from(champions).map(([id, champion]) => ({
-    name: champion.name,
-    portraitUrl: new URL(
-      `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`
-    ),
-  }));
+  return Array.from(champions.values()).map((champion) => {
+    return {
+      name: champion.name,
+      portraitUrl: new URL(
+        `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion.id}.png`
+      ),
+    };
+  });
 }
 
 export async function getRunes() {

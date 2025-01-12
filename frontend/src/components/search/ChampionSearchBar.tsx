@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { SearchBar } from "./SearchBar";
 import Fuse from "fuse.js";
 import ChampionGrid from "./ChampionGrid";
@@ -6,7 +6,6 @@ import { useChampions } from "../../services/lol";
 
 function useFilterableChampions() {
   const { data: champs, isPending, error } = useChampions();
-
   const filterableChampionList = useMemo(
     () =>
       new Fuse(isPending || error ? [] : champs, {
@@ -27,7 +26,6 @@ export default function ChampionSearchBar() {
   const [filterText, setFilterText] = useState("");
   const { filterChamps } = useFilterableChampions();
   const filteredChamps = filterChamps(filterText);
-  console.log(filteredChamps);
 
   return (
     <>
