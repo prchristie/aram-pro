@@ -4,14 +4,14 @@ import { Build } from "../types/build.types";
 
 export type Champion = {
   name: string;
-  portraitUrl: URL;
+  portraitUrl: string;
 };
 
 type GetChampionsResponse = {
   type: string;
   format: string;
   version: string;
-  data: Map<string, Champion>;
+  data: Map<string, { name: string }>;
 };
 
 export type GetRunesResponse = Style[];
@@ -37,7 +37,7 @@ export interface Rune {
   longDesc: string;
 }
 
-export async function getLatestVersion() {
+export async function fetchLatestVersion() {
   const url = "https://ddragon.leagueoflegends.com/api/versions.json";
   const res = await axios.get<string[]>(url);
   const data = res.data;
@@ -46,7 +46,7 @@ export async function getLatestVersion() {
 }
 
 export async function fetchChampions(): Promise<Champion[]> {
-  const version = await getLatestVersion();
+  const version = await fetchLatestVersion();
   const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
 
   const res = await axios.get<GetChampionsResponse>(url);
@@ -56,24 +56,28 @@ export async function fetchChampions(): Promise<Champion[]> {
   return Array.from(champions.values()).map((champion) => {
     return {
       name: champion.name,
-      portraitUrl: new URL(
-        `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion.id}.png`
-      ),
+      portraitUrl: `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion.id}.png`,
     };
   });
 }
 
-export async function getRunes() {
-  const version = await getLatestVersion();
+export async function fetchChampionByName(name: string): Promise<Champion> {
+  const version = await fetchLatestVersion();
+  // const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${name}.json`;
 
-  const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
+  // const res = await axios.get<GetChampionsResponse>(url);
+  // const data = res.data;
+  // const champion = new Map(data.data).get(name)!;
 
-  const res = await axios.get<GetRunesResponse>(url);
+  // console.log(data);
 
-  return res.data;
+  return {
+    name: name,
+    portraitUrl: `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${name}.png`,
+  };
 }
 
-export async function getBuildsForChamp(championId: number): Promise<Build[]> {
+export async function fetchBuildsForChamp(name: string): Promise<Build[]> {
   return [
     {
       games: 1000,
@@ -93,17 +97,27 @@ export async function getBuildsForChamp(championId: number): Promise<Build[]> {
   ];
 }
 
-export function useChampionBuilds(championId: number) {
+export function useChampionBuilds(name: string) {
   return useQuery({
-    queryKey: [`champion-${championId}`],
-    queryFn: () => getBuildsForChamp(championId),
+    queryKey: [`${name}-builds`],
+    retry: true,
+    staleTime: Infinity,
+    queryFn: () => fetchBuildsForChamp(name),
   });
 }
 
 export function useChampions() {
   return useQuery({
     queryKey: ["champions"],
-    staleTime: 100000,
     queryFn: fetchChampions,
+    staleTime: Infinity,
+  });
+}
+
+export function useChampion(name: string) {
+  return useQuery({
+    queryKey: [`champion-${name}`],
+    queryFn: async () => await fetchChampionByName(name),
+    staleTime: Infinity,
   });
 }
