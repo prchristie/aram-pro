@@ -1,8 +1,10 @@
+import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Build } from "../types/build.types";
 
 export type Champion = {
   name: string;
-  portraitUrl: string;
+  portraitUrl: URL;
 };
 
 type GetChampionsResponse = {
@@ -43,8 +45,6 @@ export async function getLatestVersion() {
   return data[0];
 }
 
-
-
 export async function fetchChampions(): Promise<Champion[]> {
   const version = await getLatestVersion();
   const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion.json`;
@@ -53,9 +53,11 @@ export async function fetchChampions(): Promise<Champion[]> {
   const data = res.data;
   const champions = data.data;
 
-  return Object.values(champions).map((champion) => ({
+  return Array.from(champions).map(([id, champion]) => ({
     name: champion.name,
-    portraitUrl: `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${champion.id}.png`,
+    portraitUrl: new URL(
+      `https://ddragon.leagueoflegends.com/cdn/${version}/img/champion/${id}.png`
+    ),
   }));
 }
 
@@ -67,4 +69,39 @@ export async function getRunes() {
   const res = await axios.get<GetRunesResponse>(url);
 
   return res.data;
+}
+
+export async function getBuildsForChamp(championId: number): Promise<Build[]> {
+  return [
+    {
+      games: 1000,
+      runes: {
+        primaryRune: {
+          icon: {
+            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
+          },
+          name: "Eletrocute",
+        },
+        secondaryRuneIcon: {
+          url: "https://github.com/InFinity54/LoL_DDragon/blob/master/img/perk-images/Styles/7204_Resolve.png",
+        },
+      },
+      winRate: 100,
+    },
+  ];
+}
+
+export function useChampionBuilds(championId: number) {
+  return useQuery({
+    queryKey: [`champion-${championId}`],
+    queryFn: () => getBuildsForChamp(championId),
+  });
+}
+
+export function useChampions() {
+  return useQuery({
+    queryKey: ["champions"],
+    staleTime: 100000,
+    queryFn: fetchChampions,
+  });
 }

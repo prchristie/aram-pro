@@ -1,19 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
 import { SearchBar } from "./SearchBar";
 import Fuse from "fuse.js";
-import { Champion, fetchChampions } from "../../services/lol";
 import ChampionGrid from "./ChampionGrid";
+import { useChampions } from "../../services/lol";
 
-function useChampions() {
-  const [champs, setChamps] = useState<Champion[]>([]);
+function useFilterableChampions() {
+  const { data: champs, isPending, error } = useChampions();
+
   const filterableChampionList = useMemo(
-    () => new Fuse(champs, { keys: ["name"], threshold: 0.4 }),
-    [champs]
+    () =>
+      new Fuse(isPending || error ? [] : champs, {
+        keys: ["name"],
+        threshold: 0.4,
+      }),
+    [champs, error, isPending]
   );
-
-  useEffect(() => {
-    fetchChampions().then((res) => setChamps(res));
-  }, []);
 
   function filterChamps(filter: string) {
     return filterableChampionList.search(filter).map((res) => res.item);
@@ -24,8 +25,9 @@ function useChampions() {
 
 export default function ChampionSearchBar() {
   const [filterText, setFilterText] = useState("");
-  const { filterChamps } = useChampions();
+  const { filterChamps } = useFilterableChampions();
   const filteredChamps = filterChamps(filterText);
+  console.log(filteredChamps);
 
   return (
     <>
