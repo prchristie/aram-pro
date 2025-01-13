@@ -6,3 +6,7 @@
   position: relative;
   gap: 100px;
 }
+
+.search-bar-container {
+  flex: 1;
+}

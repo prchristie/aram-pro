@@ -1,0 +1,1 @@
+* Converting all inline styles to classNames

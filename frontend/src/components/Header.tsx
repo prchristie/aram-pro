@@ -9,7 +9,7 @@ export default function Header() {
       <Link to="/">
         <AramProIcon width={150} />
       </Link>
-      <div style={{flex: "1"}}>
+      <div className="search-bar-container">
         <ChampionSearchBar />
       </div>
     </div>

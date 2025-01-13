@@ -10,35 +10,31 @@ export function BuildCarousel({ builds }: Props) {
     <div className="build-carousel">
       {builds.map((b) => {
         return (
-          <button className="carousel-item">
-            <div style={{ position: "relative" }}>
-              <img src={b.runes.primaryRune.icon.url} alt="" width={100} />
+          <button className="build-carousel-item">
+            <div className="rune-pair">
               <img
-                src={b.runes.secondaryRuneIcon.url}
-                alt=""
-                style={{ position: "absolute", right: "-10px", bottom: "0" }}
+                src={b.runes.keystone.icon.url}
+                alt={`Primary keystone ${b.runes.keystone.name}`}
+                width={100}
+              />
+              <img
+                src={b.runes.secondaryPath.icon.url}
+                alt="Secondary path"
+                style={{ position: "absolute", right: "-10px", bottom: "10px" }}
               />
             </div>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "space-between",
-                height: "100%"
-              }}
-            >
+            <div className="build-carousel__build-info">
               <p
+                className={`build-carousel__win-rate build-carousel__win-rate--${getWinRateBand(b.winRate)}`}
+              >
+                {Math.round(b.winRate)}%
+              </p>
+              <div
                 style={{
-                  color: getWinrateColor(b.winRate),
-                  fontSize: "1.5rem",
+                  color: "gray",
+                  fontSize: "0.9rem",
                 }}
               >
-                {b.winRate}%
-              </p>
-              <div style={{
-                color: "gray",
-                fontSize: "0.9rem"
-              }}>
                 <p>{b.games}</p>
                 <p>Games</p>
               </div>
@@ -50,14 +46,14 @@ export function BuildCarousel({ builds }: Props) {
   );
 }
 
-function getWinrateColor(winrate: number) {
-  if (winrate < 49) {
-    return "red";
+function getWinRateBand(winrate: number) {
+  if (winrate < 48.5) {
+    return "low";
   }
 
-  if (winrate > 53) {
-    return "green";
+  if (winrate > 52.5) {
+    return "high";
   }
 
-  return "white";
+  return "average";
 }

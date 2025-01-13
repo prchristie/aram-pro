@@ -1,6 +1,6 @@
 export type Rune = {
   name: string;
-  icon: RuneIcon;
+  icon: Icon;
 };
 
 export type StatShards = {
@@ -28,17 +28,18 @@ export type RunePage = {
   shards: StatShards;
 };
 
-// export type RuneWinrates = {
+export type RunePath = {
+  icon: Icon;
+  name: string;
+}
 
-// }
-
-export type RuneIcon = {
+export type Icon = {
   url: string;
 };
 
 export type Runes = {
-  primaryRune: Rune;
-  secondaryRuneIcon: RuneIcon;
+  keystone: Rune;
+  secondaryPath: RunePath;
   // primaryRunesWinrates: RuneWinrates;
   // secondaryRunesWinrates: RuneWinrates;
 };

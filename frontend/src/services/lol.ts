@@ -77,33 +77,39 @@ export async function fetchChampionByName(name: string): Promise<Champion> {
   };
 }
 
-function createBuildList(size: number) {
-  const output: Build[] = []
-  for(let i = 0; i < size; i++) {
-    output.push(
-      {
-        games: 10000,
-        runes: {
-          primaryRune: {
-            icon: {
-              url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-            },
-            name: "Eletrocute",
-          },
-          secondaryRuneIcon: {
-            url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-          },
+function createFakeBuild(winrate: number) {
+  return {
+    games: 10000,
+    runes: {
+      keystone: {
+        icon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
         },
-        winRate: 100,
-      }
-    )
+        name: "Eletrocute",
+      },
+      secondaryPath: {
+        icon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+        },
+        name: "Resolve",
+      },
+    },
+    winRate: winrate,
+  };
+}
+
+function createBuildList(size: number) {
+  const output: Build[] = [];
+  output.push(createFakeBuild(50));
+  for (let i = 0; i < size; i++) {
+    output.push(createFakeBuild(Math.random() * 100));
   }
 
   return output;
 }
 
 export async function fetchBuildsForChamp(name: string): Promise<Build[]> {
-  return createBuildList(2)
+  return createBuildList(20);
 }
 
 export function useChampionBuilds(name: string) {

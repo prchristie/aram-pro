@@ -10,7 +10,7 @@ function useFilterableChampions() {
     () =>
       new Fuse(isPending || error ? [] : champs, {
         keys: ["name"],
-        threshold: 0.4,
+        threshold: 0.3,
       }),
     [champs, error, isPending]
   );
