@@ -1,6 +1,6 @@
 import { AnchorHTMLAttributes, FC } from "react";
 import { Champion } from "../../services/lol";
-import "./RedirectableChampionSplash.css";
+import "./redirectable-champion-splash.css";
 import Image from "../Image";
 import { Link } from "@tanstack/react-router";
 

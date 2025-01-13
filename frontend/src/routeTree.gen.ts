@@ -13,11 +13,11 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ChampionNameImport } from './routes/champion/$name'
 
 // Create Virtual Routes
 
 const IndexLazyImport = createFileRoute('/')()
-const ChampionNameLazyImport = createFileRoute('/champion/$name')()
 
 // Create/Update Routes
 
@@ -27,13 +27,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
-const ChampionNameLazyRoute = ChampionNameLazyImport.update({
+const ChampionNameRoute = ChampionNameImport.update({
   id: '/champion/$name',
   path: '/champion/$name',
   getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/champion/$name.lazy').then((d) => d.Route),
-)
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -50,7 +48,7 @@ declare module '@tanstack/react-router' {
       id: '/champion/$name'
       path: '/champion/$name'
       fullPath: '/champion/$name'
-      preLoaderRoute: typeof ChampionNameLazyImport
+      preLoaderRoute: typeof ChampionNameImport
       parentRoute: typeof rootRoute
     }
   }
@@ -60,18 +58,18 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
-  '/champion/$name': typeof ChampionNameLazyRoute
+  '/champion/$name': typeof ChampionNameRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
-  '/champion/$name': typeof ChampionNameLazyRoute
+  '/champion/$name': typeof ChampionNameRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
-  '/champion/$name': typeof ChampionNameLazyRoute
+  '/champion/$name': typeof ChampionNameRoute
 }
 
 export interface FileRouteTypes {
@@ -85,12 +83,12 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
-  ChampionNameLazyRoute: typeof ChampionNameLazyRoute
+  ChampionNameRoute: typeof ChampionNameRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
-  ChampionNameLazyRoute: ChampionNameLazyRoute,
+  ChampionNameRoute: ChampionNameRoute,
 }
 
 export const routeTree = rootRoute
@@ -111,7 +109,7 @@ export const routeTree = rootRoute
       "filePath": "index.lazy.tsx"
     },
     "/champion/$name": {
-      "filePath": "champion/$name.lazy.tsx"
+      "filePath": "champion/$name.tsx"
     }
   }
 }

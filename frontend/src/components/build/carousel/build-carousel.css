@@ -1,0 +1,70 @@
+:root {
+  --carousel-item-color: #37403d;
+  --low-winrate-color: #ff706b;
+  --average-winrate-color: rgb(255, 255, 255);
+  --high-winrate-color: #7ed957;
+  --games-played-color: #beb0a7;
+}
+
+.build-carousel {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scrollbar-color: #8b9d83 #6a7b76;
+}
+
+.build-carousel-item {
+  background-color: var(--carousel-item-color);
+  padding: 8px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border: none;
+  width: 190px;
+  flex-basis: baseline;
+  flex-shrink: 0;
+}
+
+.rune-pair {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.build-carousel__build-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.build-carousel__secondary-path-icon {
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+}
+
+.build-carousel__win-rate {
+  font-size: 1.5rem;
+}
+
+.build-carousel__win-rate--low {
+  color: var(--low-winrate-color);
+}
+
+.build-carousel__win-rate--average {
+  color: var(--average-winrate-color);
+}
+
+.build-carousel__win-rate--high {
+  color: var(--high-winrate-color);
+}
+
+.build-carousel__games-played {
+  color: var(--games-played-color);
+  font-size: 0.9rem;
+}
