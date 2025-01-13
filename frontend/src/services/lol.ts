@@ -63,13 +63,6 @@ export async function fetchChampions(): Promise<Champion[]> {
 
 export async function fetchChampionByName(name: string): Promise<Champion> {
   const version = await fetchLatestVersion();
-  // const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/champion/${name}.json`;
-
-  // const res = await axios.get<GetChampionsResponse>(url);
-  // const data = res.data;
-  // const champion = new Map(data.data).get(name)!;
-
-  // console.log(data);
 
   return {
     name: name,
@@ -108,7 +101,7 @@ function createBuildList(size: number) {
   return output;
 }
 
-export async function fetchBuildsForChamp(name: string): Promise<Build[]> {
+export async function fetchBuildsForChamp(_name: string): Promise<Build[]> {
   return createBuildList(20);
 }
 
