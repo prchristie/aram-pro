@@ -1,20 +1,19 @@
-import { useMemo, useState } from "react";
-import { SearchBar } from "./searchBar/SearchBar";
+import { useEffect, useMemo, useState } from "react";
+import { SearchBar } from "./SearchBar";
 import Fuse from "fuse.js";
+import { Champion, fetchChampions } from "../../services/lol";
 import ChampionGrid from "./ChampionGrid";
-import { useChampions } from "../../services/lol";
-import "./champion-search-bar.css";
 
-function useFilterableChampions() {
-  const { data: champs, isPending, error } = useChampions();
+function useChampions() {
+  const [champs, setChamps] = useState<Champion[]>([]);
   const filterableChampionList = useMemo(
-    () =>
-      new Fuse(isPending || error ? [] : champs, {
-        keys: ["name"],
-        threshold: 0.3,
-      }),
-    [champs, error, isPending]
+    () => new Fuse(champs, { keys: ["name"], threshold: 0.4 }),
+    [champs]
   );
+
+  useEffect(() => {
+    fetchChampions().then((res) => setChamps(res));
+  }, []);
 
   function filterChamps(filter: string) {
     return filterableChampionList.search(filter).map((res) => res.item);
@@ -25,7 +24,7 @@ function useFilterableChampions() {
 
 export default function ChampionSearchBar() {
   const [filterText, setFilterText] = useState("");
-  const { filterChamps } = useFilterableChampions();
+  const { filterChamps } = useChampions();
   const filteredChamps = filterChamps(filterText);
 
   return (
@@ -35,7 +34,13 @@ export default function ChampionSearchBar() {
         setFilterText={setFilterText}
         placeholder="Champion name"
       />
-      <div className="search-bar__items">
+      <div
+        style={{
+          position: "absolute",
+          top: "100%",
+          width: "100%",
+        }}
+      >
         <ChampionGrid
           champions={filteredChamps}
           onChampionSplashClicked={() => setFilterText("")}

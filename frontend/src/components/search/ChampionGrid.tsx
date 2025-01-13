@@ -1,35 +1,39 @@
 import { FC } from "react";
 import RedirectableChampionSplash from "./RedirectableChampionSplash";
 import { Champion } from "../../services/lol";
-import "./champion-grid.css"
 
 interface ChampionGridProps {
   champions: Champion[];
-  onChampionSplashClicked: () => void;
+  onChampionSplashClicked: () => void
 }
 
-const ChampionGrid: FC<ChampionGridProps> = ({
-  champions,
-  onChampionSplashClicked,
-}) => {
+const ChampionGrid: FC<ChampionGridProps> = ({ champions, onChampionSplashClicked }) => {
   if (champions.length >= 1) {
-    return (
-      <div className="champion-grid">
-        {champions.map((c) => (
-          <div key={c.name} className="champion-grid__item">
-            <RedirectableChampionSplash
-              key={c.name}
-              champion={c}
-              onClick={onChampionSplashClicked}
-            />
-            {c.name}
-          </div>
-        ))}
-      </div>
-    );
+    return <div
+      style={{
+        width: "100%",
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "space-evenly",
+        gap: "5px",
+        maxHeight: "50vh",
+        overflow: "auto",
+        backgroundColor: "rgba(0,0,0,0.75)",
+        fontSize: "0.85rem",
+        padding: "10px",
+        borderRadius: "10px",
+      }}
+    >
+      {champions.map((c) => (
+        <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
+          <RedirectableChampionSplash key={c.name} champion={c} onClick={onChampionSplashClicked}/>
+          {c.name}
+        </div>
+      ))}
+    </div>;
   }
 
-  return <></>;
+  return <></>
 };
 
 export default ChampionGrid;

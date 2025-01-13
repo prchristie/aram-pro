@@ -9,9 +9,7 @@ export default function Header() {
       <Link to="/">
         <AramProIcon width={150} />
       </Link>
-      <div className="search-bar-container">
-        <ChampionSearchBar />
-      </div>
+      <ChampionSearchBar />
     </div>
   );
 }

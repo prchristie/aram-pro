@@ -1,6 +1,8 @@
 export type Rune = {
   name: string;
-  icon: Icon;
+  iconUrl: string;
+  id: number;
+  key: string;
 };
 
 export type StatShards = {
@@ -17,7 +19,6 @@ export type PrimaryRunePath = {
 };
 
 export type SecondaryRunePath = {
-  iconUrl: string;
   lesserSlot1: Rune;
   lesserSlot2: Rune;
 };
@@ -28,24 +29,26 @@ export type RunePage = {
   shards: StatShards;
 };
 
-export type RunePath = {
-  icon: Icon;
-  name: string;
-}
-
-export type Icon = {
-  url: string;
-};
-
-export type Runes = {
-  keystone: Rune;
-  secondaryPath: RunePath;
-  // primaryRunesWinrates: RuneWinrates;
-  // secondaryRunesWinrates: RuneWinrates;
-};
-
 export type Build = {
-  winRate: number;
+  winRate: NormalPercentage;
   games: number;
-  runes: Runes;
+  primaryRune: Rune;
+  secondaryRune: Rune;
+  runePage: RunePage;
 };
+
+export class NormalPercentage {
+  public get number(): number {
+    return this._number;
+  }
+
+  private constructor(private _number: number) {}
+
+  public static create(number: number) {
+    if (number < 0 || number > 100) {
+      throw Error("Invalid percentage");
+    }
+
+    return new NormalPercentage(number);
+  }
+}

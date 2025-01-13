@@ -26,14 +26,6 @@ body {
   padding: 10px 40px;
 }
 
-button:hover, a:hover {
-  cursor: pointer;
-}
-
-button:active {
-  filter: brightness(0.9);
-}
-
 /*
   1. Use a more-intuitive box-sizing model.
 */

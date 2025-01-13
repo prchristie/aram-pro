@@ -24,7 +24,3 @@ dist-ssr
 *.sw?
 
 *.tsbuildinfo
-
-.env
-.env.local
-.dont-share.env
