@@ -31,8 +31,8 @@ export default function ChampionSearchBar() {
   return (
     <>
       <SearchBar
-        filterText={filterText}
-        setFilterText={setFilterText}
+        searchQuery={filterText}
+        onSearchQueryChange={setFilterText}
         placeholder="Champion name"
       />
       <div className="search-bar__items">

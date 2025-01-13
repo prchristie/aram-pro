@@ -1,24 +1,35 @@
 import { FC } from "react";
 import "./SearchBar.css";
+import { useKeyCapture } from "../../../hooks/useKeyboard";
 
 interface SearchBarProps {
   placeholder?: string;
-  filterText: string;
-  setFilterText: (filterText: string) => void;
+  searchQuery: string;
+  onSearchQueryChange: (filterText: string) => void;
 }
 
 export const SearchBar: FC<SearchBarProps> = ({
   placeholder,
-  filterText,
-  setFilterText,
+  searchQuery,
+  onSearchQueryChange,
 }) => {
+  function onKeydown() {
+    onSearchQueryChange("");
+  }
+
+  const keyboard = useKeyCapture(onKeydown, false, new Set(["Escape"]));
+
   return (
     <input
       className="search-bar"
       type="text"
       placeholder={placeholder}
-      value={filterText}
-      onChange={(e) => setFilterText(e.target.value)}
+      value={searchQuery}
+      onChange={(e) => onSearchQueryChange(e.target.value)}
+      onFocus={() => {
+        keyboard.activateKeyboard();
+      }}
+      onBlur={() => keyboard.deactivateKeyboard()}
     />
   );
 };
