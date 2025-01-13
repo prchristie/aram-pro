@@ -1,6 +1,7 @@
 import { FC } from "react";
 import RedirectableChampionSplash from "./RedirectableChampionSplash";
 import { Champion } from "../../services/lol";
+import "./champion-grid.css"
 
 interface ChampionGridProps {
   champions: Champion[];
@@ -13,30 +14,9 @@ const ChampionGrid: FC<ChampionGridProps> = ({
 }) => {
   if (champions.length >= 1) {
     return (
-      <div
-        style={{
-          width: "100%",
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-evenly",
-          gap: "5px",
-          maxHeight: "50vh",
-          overflow: "auto",
-          backgroundColor: "rgba(0,0,0,0.75)",
-          fontSize: "0.85rem",
-          padding: "10px",
-          borderRadius: "10px",
-        }}
-      >
+      <div className="champion-grid">
         {champions.map((c) => (
-          <div
-            key={c.name}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
+          <div key={c.name} className="champion-grid__item">
             <RedirectableChampionSplash
               key={c.name}
               champion={c}

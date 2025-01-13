@@ -1,4 +1,4 @@
-import { Build } from "../../types/build.types";
+import { Build } from "../../../types/build.types";
 import "./build-carousel.css";
 
 type Props = {
@@ -20,7 +20,7 @@ export function BuildCarousel({ builds }: Props) {
               <img
                 src={b.runes.secondaryPath.icon.url}
                 alt="Secondary path"
-                style={{ position: "absolute", right: "-10px", bottom: "10px" }}
+                className="build-carousel__secondary-path-icon"
               />
             </div>
             <div className="build-carousel__build-info">
@@ -29,12 +29,7 @@ export function BuildCarousel({ builds }: Props) {
               >
                 {Math.round(b.winRate)}%
               </p>
-              <div
-                style={{
-                  color: "gray",
-                  fontSize: "0.9rem",
-                }}
-              >
+              <div className="build-carousel__games-played">
                 <p>{b.games}</p>
                 <p>Games</p>
               </div>

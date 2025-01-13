@@ -1,8 +1,9 @@
 import { useMemo, useState } from "react";
-import { SearchBar } from "./SearchBar";
+import { SearchBar } from "./searchBar/SearchBar";
 import Fuse from "fuse.js";
 import ChampionGrid from "./ChampionGrid";
 import { useChampions } from "../../services/lol";
+import "./champion-search-bar.css";
 
 function useFilterableChampions() {
   const { data: champs, isPending, error } = useChampions();
@@ -34,15 +35,7 @@ export default function ChampionSearchBar() {
         setFilterText={setFilterText}
         placeholder="Champion name"
       />
-      <div
-        style={{
-          position: "absolute",
-          top: "100%",
-          left: "0",
-          width: "100%",
-          zIndex: 10
-        }}
-      >
+      <div className="search-bar__items">
         <ChampionGrid
           champions={filteredChamps}
           onChampionSplashClicked={() => setFilterText("")}

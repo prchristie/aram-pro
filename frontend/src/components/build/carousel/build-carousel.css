@@ -3,6 +3,7 @@
   --low-winrate-color: #ff706b;
   --average-winrate-color: rgb(255, 255, 255);
   --high-winrate-color: #7ed957;
+  --games-played-color: #beb0a7;
 }
 
 .build-carousel {
@@ -41,6 +42,12 @@
   height: 100%;
 }
 
+.build-carousel__secondary-path-icon {
+  position: absolute;
+  right: 0px;
+  bottom: 10px;
+}
+
 .build-carousel__win-rate {
   font-size: 1.5rem;
 }
@@ -55,4 +62,9 @@
 
 .build-carousel__win-rate--high {
   color: var(--high-winrate-color);
+}
+
+.build-carousel__games-played {
+  color: var(--games-played-color);
+  font-size: 0.9rem;
 }
