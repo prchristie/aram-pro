@@ -52,7 +52,10 @@ function BuildPage() {
           width={128}
           height={128}
         />
-        <BuildCarousel builds={builds.data} />
+        <BuildCarousel
+          builds={builds.data}
+          onBuildSelected={setSelectedBuild}
+        />
       </div>
       <div>
         {selectedBuild ? (

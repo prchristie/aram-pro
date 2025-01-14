@@ -135,7 +135,6 @@ function createBuildList(size: number) {
 }
 
 export async function fetchBuildsForChamp(_name: string): Promise<Build[]> {
-  await new Promise(resolve => setTimeout(resolve, 20000));
   return createBuildList(20);
 }
 

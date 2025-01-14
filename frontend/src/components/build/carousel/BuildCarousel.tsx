@@ -3,14 +3,18 @@ import "./build-carousel.css";
 
 type Props = {
   builds: Build[];
+  onBuildSelected: (b: Build) => void;
 };
 
-export function BuildCarousel({ builds }: Props) {
+export function BuildCarousel({ builds, onBuildSelected }: Props) {
   return (
     <div className="build-carousel">
       {builds.map((b) => {
         return (
-          <button className="build-carousel-item">
+          <button
+            className="build-carousel-item"
+            onClick={() => onBuildSelected(b)}
+          >
             <div className="rune-pair">
               <img
                 src={b.runes.keystone.icon.url}
