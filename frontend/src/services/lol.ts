@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Build } from "../types/build.types";
+import { Build, RuneSlot, RuneSlotChoice } from "../types/build.types";
 
 export type Champion = {
   name: string;
@@ -70,7 +70,28 @@ export async function fetchChampionByName(name: string): Promise<Champion> {
   };
 }
 
-function createFakeBuild(winrate: number) {
+function generateRandomWinRate() {
+  return Math.random() * 100;
+}
+
+function createChoice(winrate: number): RuneSlotChoice {
+  return {
+    icon: {
+      url: "https://github.com/InFinity54/LoL_DDragon/blob/master/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png?raw=true",
+    },
+    winRate: winrate,
+  };
+}
+
+function createSlot(winrate: number): RuneSlot {
+  return {
+    choice1: createChoice(winrate),
+    choice2: createChoice(winrate),
+    choice3: createChoice(winrate),
+  };
+}
+
+function createFakeBuild(winrate: number): Build {
   return {
     games: 10000,
     runes: {
@@ -80,11 +101,23 @@ function createFakeBuild(winrate: number) {
         },
         name: "Eletrocute",
       },
-      secondaryPath: {
-        icon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+      secondaryPathIcon: {
+        url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+      },
+      primaryRunePathWinRates: {
+        keystones: [],
+        runeSlots: {
+          slot1: createSlot(winrate),
+          slot2: createSlot(winrate),
+          slot3: createSlot(winrate),
         },
-        name: "Resolve",
+      },
+      secondaryRunesPathWinRates: {
+        runeSlots: {
+          slot1: createSlot(winrate),
+          slot2: createSlot(winrate),
+          slot3: createSlot(winrate),
+        },
       },
     },
     winRate: winrate,
@@ -95,13 +128,14 @@ function createBuildList(size: number) {
   const output: Build[] = [];
   output.push(createFakeBuild(50));
   for (let i = 0; i < size; i++) {
-    output.push(createFakeBuild(Math.random() * 100));
+    output.push(createFakeBuild(generateRandomWinRate()));
   }
 
   return output;
 }
 
 export async function fetchBuildsForChamp(_name: string): Promise<Build[]> {
+  await new Promise(resolve => setTimeout(resolve, 20000));
   return createBuildList(20);
 }
 

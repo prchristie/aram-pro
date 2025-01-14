@@ -1,47 +1,43 @@
-export type Rune = {
-  name: string;
+export type Keystone = {
   icon: Icon;
-};
-
-export type StatShards = {
-  defenseId: number;
-  flexId: number;
-  offenseId: number;
+  name: string;
 };
 
 export type PrimaryRunePath = {
-  keystone: Rune;
-  lesserSlot1: Rune;
-  lesserSlot2: Rune;
-  lesserSlot3: Rune;
+  keystones: Keystone[];
+  runeSlots: RuneSlots;
 };
 
 export type SecondaryRunePath = {
-  iconUrl: string;
-  lesserSlot1: Rune;
-  lesserSlot2: Rune;
+  runeSlots: RuneSlots;
 };
 
-export type RunePage = {
-  primaryPath: PrimaryRunePath;
-  secondaryPath: SecondaryRunePath;
-  shards: StatShards;
+export type RuneSlots = {
+  slot1: RuneSlot;
+  slot2: RuneSlot;
+  slot3: RuneSlot;
 };
 
-export type RunePath = {
+export type RuneSlotChoice = {
   icon: Icon;
-  name: string;
-}
+  winRate: number;
+};
+
+export type RuneSlot = {
+  choice1: RuneSlotChoice;
+  choice2: RuneSlotChoice;
+  choice3: RuneSlotChoice;
+};
 
 export type Icon = {
   url: string;
 };
 
 export type Runes = {
-  keystone: Rune;
-  secondaryPath: RunePath;
-  // primaryRunesWinrates: RuneWinrates;
-  // secondaryRunesWinrates: RuneWinrates;
+  keystone: Keystone;
+  secondaryPathIcon: Icon;
+  primaryRunePathWinRates: PrimaryRunePath;
+  secondaryRunesPathWinRates: SecondaryRunePath;
 };
 
 export type Build = {

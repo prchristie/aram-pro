@@ -18,7 +18,7 @@ export function BuildCarousel({ builds }: Props) {
                 width={100}
               />
               <img
-                src={b.runes.secondaryPath.icon.url}
+                src={b.runes.secondaryPathIcon.url}
                 alt="Secondary path"
                 className="build-carousel__secondary-path-icon"
               />

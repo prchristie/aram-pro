@@ -2,6 +2,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useChampion, useChampionBuilds } from "../../services/lol";
 import { BuildCarousel } from "../../components/build/carousel/BuildCarousel";
 import "./build-page.css";
+import { RuneDisplay } from "../../components/build/carousel/RuneDisplay";
+import { useEffect, useState } from "react";
+import { Build } from "../../types/build.types";
 
 export const Route = createFileRoute("/champion/$name")({
   component: () => {
@@ -14,6 +17,21 @@ function BuildPage() {
   const params = Route.useParams();
   const champion = useChampion(params.name);
   const builds = useChampionBuilds(params.name);
+  const [selectedBuild, setSelectedBuild] = useState<undefined | Build>(
+    undefined
+  );
+
+  useEffect(() => {
+    if (
+      champion.error ||
+      champion.isPending ||
+      builds.error ||
+      builds.isPending
+    ) {
+      return;
+    }
+    setSelectedBuild(builds.data[0]);
+  });
 
   if (
     champion.error ||
@@ -35,6 +53,13 @@ function BuildPage() {
           height={128}
         />
         <BuildCarousel builds={builds.data} />
+      </div>
+      <div>
+        {selectedBuild ? (
+          <RuneDisplay runes={selectedBuild.runes} />
+        ) : (
+          "Loading"
+        )}
       </div>
     </div>
   );
