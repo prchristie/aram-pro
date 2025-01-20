@@ -27,7 +27,7 @@ function BuildPage() {
     }
 
     setSelectedBuild(builds.data[0]);
-  }, [builds]);
+  }, [builds.error, builds.isPending, builds.data]);
 
   if (
     champion.error ||
