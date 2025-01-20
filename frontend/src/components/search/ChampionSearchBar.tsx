@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { SearchBar } from "./searchBar/SearchBar";
 import Fuse from "fuse.js";
 import ChampionGrid from "./ChampionGrid";
-import { useChampions } from "../../services/lol";
+import { useChampions } from "../../services/lol/lol";
 import "./champion-search-bar.css";
 
 function useFilterableChampions() {

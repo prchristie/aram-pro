@@ -1,4 +1,5 @@
 import { Build } from "../../../types/build.types";
+import { getWinRateBand } from "../../../util";
 import "./build-carousel.css";
 
 type Props = {
@@ -43,16 +44,4 @@ export function BuildCarousel({ builds, onBuildSelected }: Props) {
       })}
     </div>
   );
-}
-
-function getWinRateBand(winrate: number) {
-  if (winrate < 48.5) {
-    return "low";
-  }
-
-  if (winrate > 52.5) {
-    return "high";
-  }
-
-  return "average";
 }

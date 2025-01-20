@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useChampion, useChampionBuilds } from "../../services/lol";
+import { useChampion, useChampionBuilds } from "../../services/lol/lol";
 import { BuildCarousel } from "../../components/build/carousel/BuildCarousel";
 import "./build-page.css";
-import { RuneDisplay } from "../../components/build/carousel/RuneDisplay";
+import { RuneDisplay } from "../../components/build/runes/RuneDisplay";
 import { useEffect, useState } from "react";
 import { Build } from "../../types/build.types";
 
@@ -22,16 +22,12 @@ function BuildPage() {
   );
 
   useEffect(() => {
-    if (
-      champion.error ||
-      champion.isPending ||
-      builds.error ||
-      builds.isPending
-    ) {
+    if (builds.error || builds.isPending) {
       return;
     }
+
     setSelectedBuild(builds.data[0]);
-  });
+  }, [builds]);
 
   if (
     champion.error ||
@@ -58,11 +54,24 @@ function BuildPage() {
         />
       </div>
       <div>
-        {selectedBuild ? (
-          <RuneDisplay runes={selectedBuild.runes} />
-        ) : (
-          "Loading"
-        )}
+        <div
+          style={{
+            display: "flex",
+          }}
+        >
+          <div
+            style={{
+              flex: "1.5",
+            }}
+          >
+            {selectedBuild ? (
+              <RuneDisplay runes={selectedBuild.runes} />
+            ) : (
+              "Loading"
+            )}
+          </div>
+          <div style={{ flex: 1 }}></div>
+        </div>
       </div>
     </div>
   );

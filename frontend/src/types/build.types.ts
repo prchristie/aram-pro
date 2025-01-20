@@ -5,28 +5,25 @@ export type Keystone = {
 
 export type PrimaryRunePath = {
   keystones: Keystone[];
-  runeSlots: RuneSlots;
+  slots: RuneSlot[];
 };
 
 export type SecondaryRunePath = {
-  runeSlots: RuneSlots;
+  slots: RuneSlot[];
 };
 
 export type RuneSlots = {
-  slot1: RuneSlot;
-  slot2: RuneSlot;
-  slot3: RuneSlot;
+  slots: RuneSlot[];
 };
 
 export type RuneSlotChoice = {
   icon: Icon;
+  name: string;
   winRate: number;
 };
 
 export type RuneSlot = {
-  choice1: RuneSlotChoice;
-  choice2: RuneSlotChoice;
-  choice3: RuneSlotChoice;
+  choices: RuneSlotChoice[];
 };
 
 export type Icon = {

@@ -1,6 +1,6 @@
 import { FC } from "react";
 import RedirectableChampionSplash from "./RedirectableChampionSplash";
-import { Champion } from "../../services/lol";
+import { Champion } from "../../services/lol/lol";
 import "./champion-grid.css"
 
 interface ChampionGridProps {
