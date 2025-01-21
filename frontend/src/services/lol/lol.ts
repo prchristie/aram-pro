@@ -1,12 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Build } from "../../types/build.types";
+import { Build, Champion } from "../../types/build.types";
 import { createBuildList } from "./fake";
-
-export type Champion = {
-  name: string;
-  portraitUrl: string;
-};
 
 type GetChampionsResponse = {
   type: string;

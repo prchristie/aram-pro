@@ -42,3 +42,8 @@ export type Build = {
   games: number;
   runes: Runes;
 };
+
+export type Champion = {
+  name: string;
+  portraitUrl: string;
+};
