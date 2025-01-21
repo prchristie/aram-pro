@@ -17,7 +17,12 @@ export function RuneDisplay({ runes }: Props) {
         <h2>Runes</h2>
         <hr style={{ border: "3px solid white" }} />
       </div>
-      <div style={{ display: "flex", paddingTop: "10px", gap: "30px" }}>
+      <div
+        style={{
+          display: "flex",
+          paddingTop: "10px",
+        }}
+      >
         <div
           style={{
             display: "flex",
@@ -38,7 +43,7 @@ export function RuneDisplay({ runes }: Props) {
           style={{
             display: "flex",
             flexDirection: "column",
-            gap: "20px",
+            gap: "30px",
             minWidth: "150px",
             flex: "1.5",
           }}
@@ -153,7 +158,7 @@ function SecondaryRunePathDisplay({
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
+          gap: "15px",
         }}
       >
         {secondaryRunePath.slots.map((s) => (
@@ -190,20 +195,22 @@ function PrimaryRunePathDisplay({
       </div>
       <RuneRow>
         {primaryRunePath.keystones.map((ks) => (
-          <img src={ks.icon.url} alt="" width={80} />
+          <img src={ks.icon.url} alt="" width={75} />
         ))}
       </RuneRow>
-      {primaryRunePath.slots.map((s) => (
-        <RuneRow>
-          {s.choices.map((c) => (
-            <HoveringWinRate
-              winRate={c.winRate}
-            >
-              <img src={c.icon.url} key={c.name} width={50} />
-            </HoveringWinRate>
-          ))}
-        </RuneRow>
-      ))}
+      <div style={{
+        display: "flex",flexDirection: "column", gap: "30px"
+      }}>
+        {primaryRunePath.slots.map((s) => (
+          <RuneRow>
+            {s.choices.map((c) => (
+              <HoveringWinRate winRate={c.winRate}>
+                <img src={c.icon.url} key={c.name} width={60} />
+              </HoveringWinRate>
+            ))}
+          </RuneRow>
+        ))}
+      </div>
     </>
   );
 }

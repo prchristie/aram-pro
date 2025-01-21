@@ -61,9 +61,19 @@ body {
 /*
   5. Improve media defaults
 */
-img, picture, video, canvas, svg {
+picture, video, canvas, svg {
   display: block;
   max-width: 100%;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+  font-style: italic;
+  background-repeat: no-repeat;
+  background-size: cover;
+  shape-margin: 1rem;
 }
 
 /*
