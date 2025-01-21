@@ -61,6 +61,35 @@ function RuneRow({ children }: { children: ReactNode }) {
   );
 }
 
+function HoveringWinRate({
+  winRate,
+  children,
+}: {
+  winRate: number;
+  children: ReactNode;
+}) {
+  return (
+    <div style={{ position: "relative" }}>
+      <p
+        style={{
+          position: "absolute",
+          backgroundColor: "rgba(0,0,0,0.8)",
+          fontSize: "0.9rem",
+          right: "-20px",
+          top: "-10px",
+          zIndex: 10,
+          borderRadius: "5px",
+          padding: "1px",
+          color: getWinRateBand(winRate) === "high" ? "#7ed957" : "white",
+        }}
+      >
+        {Math.round(winRate)}%
+      </p>
+      {children}
+    </div>
+  );
+}
+
 function StatShardOptionsRow({
   options: shardOptions,
 }: {
@@ -69,20 +98,7 @@ function StatShardOptionsRow({
   return (
     <RuneRow>
       {shardOptions.options.map((o) => (
-        <div style={{ position: "relative" }}>
-          <p
-            style={{
-              position: "absolute",
-              backgroundColor: "rgba(0,0,0,0.5)",
-              fontSize: "0.65rem",
-              right: "-15px",
-              top: "-5px",
-              zIndex: 10,
-              color: getWinRateBand(o.winRate) === "high" ? "#7ed957" : "white",
-            }}
-          >
-            {Math.round(o.winRate)}%
-          </p>
+        <HoveringWinRate winRate={o.winRate}>
           <img
             src={o.icon.url}
             width={30}
@@ -92,7 +108,7 @@ function StatShardOptionsRow({
               border: "1px solid gold",
             }}
           />
-        </div>
+        </HoveringWinRate>
       ))}
     </RuneRow>
   );
@@ -129,10 +145,7 @@ function SecondaryRunePathDisplay({
           justifyContent: "center",
         }}
       >
-        <img
-          src={secondaryRunePath.icon.url}
-          alt=""
-        />
+        <img src={secondaryRunePath.icon.url} alt="" />
         {secondaryRunePath.name}
       </div>
 
@@ -146,25 +159,9 @@ function SecondaryRunePathDisplay({
         {secondaryRunePath.slots.map((s) => (
           <RuneRow>
             {s.choices.map((c) => (
-              <div style={{ position: "relative" }}>
-                <p
-                  style={{
-                    position: "absolute",
-                    backgroundColor: "rgba(0,0,0,0.5)",
-                    fontSize: "0.7rem",
-                    right: "-15px",
-                    top: "-5px",
-                    zIndex: 10,
-                    color:
-                      getWinRateBand(c.winRate) === "high"
-                        ? "#7ed957"
-                        : "white",
-                  }}
-                >
-                  {Math.round(c.winRate)}%
-                </p>
+              <HoveringWinRate winRate={c.winRate}>
                 <img src={c.icon.url} width={50} />
-              </div>
+              </HoveringWinRate>
             ))}
           </RuneRow>
         ))}
@@ -199,26 +196,11 @@ function PrimaryRunePathDisplay({
       {primaryRunePath.slots.map((s) => (
         <RuneRow>
           {s.choices.map((c) => (
-            <div
-              style={{
-                position: "relative",
-              }}
+            <HoveringWinRate
+              winRate={c.winRate}
             >
-              <p
-                style={{
-                  position: "absolute",
-                  backgroundColor: "rgba(0,0,0,0.5)",
-                  right: "-15px",
-                  top: "-5px",
-                  zIndex: 10,
-                  color:
-                    getWinRateBand(c.winRate) === "high" ? "#7ed957" : "white",
-                }}
-              >
-                {Math.round(c.winRate)}%
-              </p>
               <img src={c.icon.url} key={c.name} width={50} />
-            </div>
+            </HoveringWinRate>
           ))}
         </RuneRow>
       ))}
