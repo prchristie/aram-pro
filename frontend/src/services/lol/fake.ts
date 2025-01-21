@@ -34,10 +34,7 @@ function createFakeBuild(winrate: number): Build {
         },
         name: "Eletrocute",
       },
-      secondaryPathIcon: {
-        url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-      },
-      primaryRunePathWinRates: {
+      primaryRunePath: {
         keystones: [
           {
             icon: {
@@ -66,7 +63,10 @@ function createFakeBuild(winrate: number): Build {
         ],
         slots: [createSlot(winrate), createSlot(winrate), createSlot(winrate)],
       },
-      secondaryRunesPathWinRates: {
+      secondaryRunePath: {
+        icon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
+        },
         slots: [createSlot(winrate), createSlot(winrate), createSlot(winrate)],
       },
     },

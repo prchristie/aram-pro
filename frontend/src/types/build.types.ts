@@ -9,6 +9,7 @@ export type PrimaryRunePath = {
 };
 
 export type SecondaryRunePath = {
+  icon: Icon;
   slots: RuneSlot[];
 };
 
@@ -32,9 +33,8 @@ export type Icon = {
 
 export type Runes = {
   keystone: Keystone;
-  secondaryPathIcon: Icon;
-  primaryRunePathWinRates: PrimaryRunePath;
-  secondaryRunesPathWinRates: SecondaryRunePath;
+  primaryRunePath: PrimaryRunePath;
+  secondaryRunePath: SecondaryRunePath;
 };
 
 export type Build = {
