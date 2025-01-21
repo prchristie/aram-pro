@@ -18,7 +18,14 @@ export function RuneDisplay({ runes }: Props) {
         <hr style={{ border: "3px solid white" }} />
       </div>
       <div style={{ display: "flex", paddingTop: "10px", gap: "30px" }}>
-        <div style={{ display: "flex", flex: "2", flexDirection: "column", gap: "20px" }}>
+        <div
+          style={{
+            display: "flex",
+            flex: "2",
+            flexDirection: "column",
+            gap: "20px",
+          }}
+        >
           <PrimaryRunePathDisplay primaryRunePath={runes.primaryRunePath} />
         </div>
         <div
@@ -33,7 +40,7 @@ export function RuneDisplay({ runes }: Props) {
             flexDirection: "column",
             gap: "20px",
             minWidth: "150px",
-            flex: "1.5"
+            flex: "1.5",
           }}
         >
           <SecondaryRunePathDisplay
@@ -114,11 +121,21 @@ function SecondaryRunePathDisplay({
 }) {
   return (
     <>
-      <img
-        src={secondaryRunePath.icon.url}
-        alt=""
-        style={{ alignSelf: "center" }}
-      />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src={secondaryRunePath.icon.url}
+          alt=""
+        />
+        {secondaryRunePath.name}
+      </div>
+
       <div
         style={{
           display: "flex",
@@ -163,6 +180,17 @@ function PrimaryRunePathDisplay({
 }) {
   return (
     <>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
+        }}
+      >
+        <img src={primaryRunePath.icon.url} alt="" />
+        {primaryRunePath.name}
+      </div>
       <RuneRow>
         {primaryRunePath.keystones.map((ks) => (
           <img src={ks.icon.url} alt="" width={80} />

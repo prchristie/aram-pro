@@ -18,8 +18,8 @@ export function BuildCarousel({ builds, onBuildSelected }: Props) {
           >
             <div className="rune-pair">
               <img
-                src={b.runes.keystone.icon.url}
-                alt={`Primary keystone ${b.runes.keystone.name}`}
+                src={b.keystone.icon.url}
+                alt={`Primary keystone ${b.keystone.name}`}
                 width={100}
               />
               <img

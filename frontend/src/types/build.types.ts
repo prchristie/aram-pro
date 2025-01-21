@@ -6,9 +6,12 @@ export type Keystone = {
 export type PrimaryRunePath = {
   keystones: Keystone[];
   slots: RuneSlot[];
+  icon: Icon;
+  name: string;
 };
 
 export type SecondaryRunePath = {
+  name: string;
   icon: Icon;
   slots: RuneSlot[];
 };
@@ -34,26 +37,26 @@ export type Icon = {
 export type ShardOption = {
   icon: Icon;
   winRate: number;
-}
+};
 
 export type ShardOptions = {
-  options: ShardOption[]
-}
+  options: ShardOption[];
+};
 
 export type Shards = {
   offense: ShardOptions;
   flex: ShardOptions;
   defense: ShardOptions;
-}
+};
 
 export type Runes = {
-  keystone: Keystone;
   primaryRunePath: PrimaryRunePath;
   secondaryRunePath: SecondaryRunePath;
   shards: Shards;
 };
 
 export type Build = {
+  keystone: Keystone;
   winRate: number;
   games: number;
   runes: Runes;

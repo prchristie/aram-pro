@@ -66,14 +66,18 @@ function createDefaultShards(winrate: number): Shards {
 function createFakeBuild(winrate: number): Build {
   return {
     games: 10000,
-    runes: {
-      keystone: {
-        icon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-        },
-        name: "Eletrocute",
+    keystone: {
+      icon: {
+        url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
       },
+      name: "Eletrocute",
+    },
+    runes: {
       primaryRunePath: {
+        name: "Domination",
+        icon: {
+          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7200_Domination.png",
+        },
         keystones: [
           {
             icon: {
@@ -106,6 +110,7 @@ function createFakeBuild(winrate: number): Build {
         icon: {
           url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
         },
+        name: "Resolve",
         slots: [createSlot(winrate), createSlot(winrate), createSlot(winrate)],
       },
       shards: createDefaultShards(winrate),
