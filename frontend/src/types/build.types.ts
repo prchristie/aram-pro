@@ -31,10 +31,26 @@ export type Icon = {
   url: string;
 };
 
+export type ShardOption = {
+  icon: Icon;
+  winRate: number;
+}
+
+export type ShardOptions = {
+  options: ShardOption[]
+}
+
+export type Shards = {
+  offense: ShardOptions;
+  flex: ShardOptions;
+  defense: ShardOptions;
+}
+
 export type Runes = {
   keystone: Keystone;
   primaryRunePath: PrimaryRunePath;
   secondaryRunePath: SecondaryRunePath;
+  shards: Shards;
 };
 
 export type Build = {

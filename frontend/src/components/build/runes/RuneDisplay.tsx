@@ -3,6 +3,8 @@ import {
   PrimaryRunePath,
   Runes,
   SecondaryRunePath,
+  ShardOptions,
+  Shards as StatShards,
 } from "../../../types/build.types";
 import { getWinRateBand } from "../../../util";
 
@@ -31,8 +33,65 @@ export function RuneDisplay({ runes }: Props) {
             border: "3px solid white",
           }}
         ></div>
-        <SecondaryRunePathDisplay secondaryRunePath={runes.secondaryRunePath} />
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "20px",
+            minWidth: "150px",
+          }}
+        >
+          <SecondaryRunePathDisplay
+            secondaryRunePath={runes.secondaryRunePath}
+          />
+          <StatShardsDisplay statShards={runes.shards} />
+        </div>
       </div>
+    </div>
+  );
+}
+
+function StatShardOptionsRow({options: shardOptions}: {options: ShardOptions}) {
+  return (
+    <RuneRow>
+      {shardOptions.options.map((o) => (
+        <div style={{ position: "relative" }}>
+          <p
+            style={{
+              position: "absolute",
+              backgroundColor: "rgba(0,0,0,0.5)",
+              fontSize: "0.65rem",
+              right: "-15px",
+              top: "-5px",
+              zIndex: 10,
+              color: getWinRateBand(o.winRate) === "high" ? "#7ed957" : "white",
+            }}
+          >
+            {Math.round(o.winRate)}%
+          </p>
+          <img src={o.icon.url} width={25} style={{
+            background: "black",
+            borderRadius: "50%",
+            border: "1px solid gold"
+          }} />
+        </div>
+      ))}
+    </RuneRow>
+  );
+}
+
+function StatShardsDisplay({ statShards }: { statShards: StatShards }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+      }}
+    >
+      <StatShardOptionsRow options={statShards.offense}/>
+      <StatShardOptionsRow options={statShards.flex}/>
+      <StatShardOptionsRow options={statShards.defense}/>
     </div>
   );
 }
@@ -43,14 +102,7 @@ function SecondaryRunePathDisplay({
   secondaryRunePath: SecondaryRunePath;
 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-        minWidth: "150px",
-      }}
-    >
+    <>
       <img
         src={secondaryRunePath.icon.url}
         alt=""
@@ -72,7 +124,7 @@ function SecondaryRunePathDisplay({
                     position: "absolute",
                     backgroundColor: "rgba(0,0,0,0.5)",
                     fontSize: "0.7rem",
-                    right: "-10px",
+                    right: "-15px",
                     top: "-5px",
                     zIndex: 10,
                     color:
@@ -83,13 +135,13 @@ function SecondaryRunePathDisplay({
                 >
                   {Math.round(c.winRate)}%
                 </p>
-                <img src={c.icon.url} width={35} />
+                <img src={c.icon.url} width={40} />
               </div>
             ))}
           </RuneRow>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 

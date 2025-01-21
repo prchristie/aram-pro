@@ -1,4 +1,10 @@
-import { Build, RuneSlot, RuneSlotChoice } from "../../types/build.types";
+import {
+  Build,
+  RuneSlot,
+  RuneSlotChoice,
+  ShardOption,
+  Shards,
+} from "../../types/build.types";
 
 function generateRandomWinRate() {
   return Math.random() * 100;
@@ -21,6 +27,39 @@ function createSlot(winrate: number): RuneSlot {
       createChoice(winrate),
       createChoice(winrate),
     ],
+  };
+}
+
+function createShardOptions(winrate: number): ShardOption[] {
+  return [
+    {
+      icon: {
+        url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png",
+      },
+      winRate: winrate,
+    },
+    {
+      icon: {
+        url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png",
+      },
+      winRate: winrate,
+    },
+    {
+      icon: {
+        url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png",
+      },
+      winRate: winrate,
+    },
+  ];
+}
+
+function createDefaultShards(winrate: number): Shards {
+  return {
+    offense: {
+      options: createShardOptions(winrate),
+    },
+    defense: { options: createShardOptions(winrate) },
+    flex: { options: createShardOptions(winrate) },
   };
 }
 
@@ -69,6 +108,7 @@ function createFakeBuild(winrate: number): Build {
         },
         slots: [createSlot(winrate), createSlot(winrate), createSlot(winrate)],
       },
+      shards: createDefaultShards(winrate),
     },
     winRate: winrate,
   };
