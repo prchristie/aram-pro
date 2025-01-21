@@ -10,14 +10,6 @@ import { getWinRateBand } from "../../../util";
 
 type Props = { runes: Runes };
 
-function RuneRow({ children }: { children: ReactNode }) {
-  return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
-      {children}
-    </div>
-  );
-}
-
 export function RuneDisplay({ runes }: Props) {
   return (
     <div>
@@ -26,7 +18,9 @@ export function RuneDisplay({ runes }: Props) {
         <hr style={{ border: "3px solid white" }} />
       </div>
       <div style={{ display: "flex", paddingTop: "10px", gap: "30px" }}>
-        <PrimaryRunePathDisplay primaryRunePath={runes.primaryRunePath} />
+        <div style={{ display: "flex", flex: "2", flexDirection: "column", gap: "20px" }}>
+          <PrimaryRunePathDisplay primaryRunePath={runes.primaryRunePath} />
+        </div>
         <div
           style={{
             minHeight: "100%",
@@ -39,6 +33,7 @@ export function RuneDisplay({ runes }: Props) {
             flexDirection: "column",
             gap: "20px",
             minWidth: "150px",
+            flex: "1.5"
           }}
         >
           <SecondaryRunePathDisplay
@@ -51,7 +46,19 @@ export function RuneDisplay({ runes }: Props) {
   );
 }
 
-function StatShardOptionsRow({options: shardOptions}: {options: ShardOptions}) {
+function RuneRow({ children }: { children: ReactNode }) {
+  return (
+    <div style={{ display: "flex", justifyContent: "space-around" }}>
+      {children}
+    </div>
+  );
+}
+
+function StatShardOptionsRow({
+  options: shardOptions,
+}: {
+  options: ShardOptions;
+}) {
   return (
     <RuneRow>
       {shardOptions.options.map((o) => (
@@ -69,11 +76,15 @@ function StatShardOptionsRow({options: shardOptions}: {options: ShardOptions}) {
           >
             {Math.round(o.winRate)}%
           </p>
-          <img src={o.icon.url} width={25} style={{
-            background: "black",
-            borderRadius: "50%",
-            border: "1px solid gold"
-          }} />
+          <img
+            src={o.icon.url}
+            width={30}
+            style={{
+              background: "black",
+              borderRadius: "50%",
+              border: "1px solid gold",
+            }}
+          />
         </div>
       ))}
     </RuneRow>
@@ -89,9 +100,9 @@ function StatShardsDisplay({ statShards }: { statShards: StatShards }) {
         gap: "10px",
       }}
     >
-      <StatShardOptionsRow options={statShards.offense}/>
-      <StatShardOptionsRow options={statShards.flex}/>
-      <StatShardOptionsRow options={statShards.defense}/>
+      <StatShardOptionsRow options={statShards.offense} />
+      <StatShardOptionsRow options={statShards.flex} />
+      <StatShardOptionsRow options={statShards.defense} />
     </div>
   );
 }
@@ -135,7 +146,7 @@ function SecondaryRunePathDisplay({
                 >
                   {Math.round(c.winRate)}%
                 </p>
-                <img src={c.icon.url} width={40} />
+                <img src={c.icon.url} width={50} />
               </div>
             ))}
           </RuneRow>
@@ -151,7 +162,7 @@ function PrimaryRunePathDisplay({
   primaryRunePath: PrimaryRunePath;
 }) {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <>
       <RuneRow>
         {primaryRunePath.keystones.map((ks) => (
           <img src={ks.icon.url} alt="" width={80} />
@@ -169,7 +180,7 @@ function PrimaryRunePathDisplay({
                 style={{
                   position: "absolute",
                   backgroundColor: "rgba(0,0,0,0.5)",
-                  right: "-10px",
+                  right: "-15px",
                   top: "-5px",
                   zIndex: 10,
                   color:
@@ -178,11 +189,11 @@ function PrimaryRunePathDisplay({
               >
                 {Math.round(c.winRate)}%
               </p>
-              <img src={c.icon.url} key={c.name} width={60} />
+              <img src={c.icon.url} key={c.name} width={50} />
             </div>
           ))}
         </RuneRow>
       ))}
-    </div>
+    </>
   );
 }
