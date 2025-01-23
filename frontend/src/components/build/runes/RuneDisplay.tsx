@@ -1,16 +1,17 @@
 import { ReactNode } from "@tanstack/react-router";
 import {
+  Keystone,
   PrimaryRunePath,
   Runes,
   SecondaryRunePath,
-  ShardOptions,
+  ShardOption,
   Shards as StatShards,
 } from "../../../types/build.types";
 import { getWinRateBand } from "../../../util";
 
-type Props = { runes: Runes };
+type Props = { runes: Runes; selectedKeystone: Keystone };
 
-export function RuneDisplay({ runes }: Props) {
+export function RuneDisplay({ runes, selectedKeystone }: Props) {
   return (
     <div>
       <div>
@@ -31,7 +32,10 @@ export function RuneDisplay({ runes }: Props) {
             gap: "20px",
           }}
         >
-          <PrimaryRunePathDisplay primaryRunePath={runes.primaryRunePath} />
+          <PrimaryRunePathDisplay
+            primaryRunePath={runes.primaryRunePath}
+            selectedKeystone={selectedKeystone}
+          />
         </div>
         <div
           style={{
@@ -96,14 +100,14 @@ function HoveringWinRate({
 }
 
 function StatShardOptionsRow({
-  options: shardOptions,
+  shardOptions,
 }: {
-  options: ShardOptions;
+  shardOptions: ShardOption[];
 }) {
   return (
     <RuneRow>
-      {shardOptions.options.map((o) => (
-        <HoveringWinRate winRate={o.winRate}>
+      {shardOptions.map((o) => (
+        <HoveringWinRate winRate={o.winRate} key={"ad"}>
           <img
             src={o.icon.url}
             width={30}
@@ -128,9 +132,9 @@ function StatShardsDisplay({ statShards }: { statShards: StatShards }) {
         gap: "10px",
       }}
     >
-      <StatShardOptionsRow options={statShards.offense} />
-      <StatShardOptionsRow options={statShards.flex} />
-      <StatShardOptionsRow options={statShards.defense} />
+      <StatShardOptionsRow shardOptions={statShards.offense} />
+      <StatShardOptionsRow shardOptions={statShards.flex} />
+      <StatShardOptionsRow shardOptions={statShards.defense} />
     </div>
   );
 }
@@ -177,8 +181,10 @@ function SecondaryRunePathDisplay({
 
 function PrimaryRunePathDisplay({
   primaryRunePath,
+  selectedKeystone,
 }: {
   primaryRunePath: PrimaryRunePath;
+  selectedKeystone: Keystone;
 }) {
   return (
     <>
@@ -194,13 +200,30 @@ function PrimaryRunePathDisplay({
         {primaryRunePath.name}
       </div>
       <RuneRow>
-        {primaryRunePath.keystones.map((ks) => (
-          <img src={ks.icon.url} alt="" width={75} />
-        ))}
+        {primaryRunePath.keystones.map((ks) => {
+          console.log(ks.name, selectedKeystone.name);
+
+          return (
+            <img
+              key={ks.name}
+              src={ks.icon.url}
+              alt=""
+              width={75}
+              style={{
+                filter:
+                  ks.name === selectedKeystone.name ? "" : "grayscale(100%)",
+              }}
+            />
+          );
+        })}
       </RuneRow>
-      <div style={{
-        display: "flex",flexDirection: "column", gap: "30px"
-      }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "30px",
+        }}
+      >
         {primaryRunePath.slots.map((s) => (
           <RuneRow>
             {s.choices.map((c) => (

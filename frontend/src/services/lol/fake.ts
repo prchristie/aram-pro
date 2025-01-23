@@ -55,11 +55,9 @@ function createShardOptions(winrate: number): ShardOption[] {
 
 function createDefaultShards(winrate: number): Shards {
   return {
-    offense: {
-      options: createShardOptions(winrate),
-    },
-    defense: { options: createShardOptions(winrate) },
-    flex: { options: createShardOptions(winrate) },
+    offense: createShardOptions(winrate),
+    defense: createShardOptions(winrate),
+    flex: createShardOptions(winrate),
   };
 }
 

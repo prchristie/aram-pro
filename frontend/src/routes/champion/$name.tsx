@@ -65,7 +65,10 @@ function BuildPage() {
             }}
           >
             {selectedBuild ? (
-              <RuneDisplay runes={selectedBuild.runes} />
+              <RuneDisplay
+                runes={selectedBuild.runes}
+                selectedKeystone={selectedBuild.keystone}
+              />
             ) : (
               "Loading"
             )}

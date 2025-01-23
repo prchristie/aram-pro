@@ -39,14 +39,10 @@ export type ShardOption = {
   winRate: number;
 };
 
-export type ShardOptions = {
-  options: ShardOption[];
-};
-
 export type Shards = {
-  offense: ShardOptions;
-  flex: ShardOptions;
-  defense: ShardOptions;
+  offense: ShardOption[];
+  flex: ShardOption[];
+  defense: ShardOption[];
 };
 
 export type Runes = {

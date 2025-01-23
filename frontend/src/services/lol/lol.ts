@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Build, Champion } from "../../types/build.types";
 import { createBuildList } from "./fake";
+import { Convert, RunesReforged } from "./lol.service.types";
 
 type GetChampionsResponse = {
   type: string;
@@ -70,4 +71,14 @@ export function useChampion(name: string) {
     queryFn: async () => await fetchChampionByName(name),
     staleTime: Infinity,
   });
+}
+
+export async function getRunesReforged(): Promise<RunesReforged[]> {
+  const version = await fetchLatestVersion();
+  const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
+
+  const res = await axios.get(url);
+  const json = res.data;
+
+  return Convert.toRunesReforged(json);
 }
