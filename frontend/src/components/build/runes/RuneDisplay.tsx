@@ -212,6 +212,7 @@ function PrimaryRunePathDisplay({
               style={{
                 filter:
                   ks.name === selectedKeystone.name ? "" : "grayscale(100%)",
+                flex: "1",
               }}
             />
           );

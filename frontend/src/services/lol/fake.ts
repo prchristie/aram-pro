@@ -1,6 +1,5 @@
 import {
   Build,
-  RuneSlot,
   RuneSlotChoice,
   ShardOption,
   Shards,
@@ -12,26 +11,6 @@ const runesReforged = await getRunesReforged();
 
 function generateRandomWinRate() {
   return Math.random() * 100;
-}
-
-function createChoice(winrate: number): RuneSlotChoice {
-  return {
-    icon: {
-      url: "https://github.com/InFinity54/LoL_DDragon/blob/master/img/perk-images/Styles/Resolve/FontOfLife/FontOfLife.png?raw=true",
-    },
-    winRate: winrate,
-    name: "FontOfLife",
-  };
-}
-
-function createSlot(winrate: number): RuneSlot {
-  return {
-    choices: [
-      createChoice(winrate),
-      createChoice(winrate),
-      createChoice(winrate),
-    ],
-  };
 }
 
 function createShardOptions(winrate: number): ShardOption[] {
@@ -120,7 +99,7 @@ function createFakeBuild(): Build {
         icon: {
           url: `https://ddragon.leagueoflegends.com/cdn/img/${randomSecondaryPath.icon}`,
         },
-        name: "Resolve",
+        name: randomSecondaryPath.name,
         slots: createSlots(randomSecondaryPath.slots),
       },
       shards: createDefaultShards(),

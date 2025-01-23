@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable */
 // To parse this data:
 //
 //   import { Convert } from "./file";
