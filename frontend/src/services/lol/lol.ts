@@ -45,7 +45,7 @@ export async function fetchChampionByName(name: string): Promise<Champion> {
 }
 
 export async function fetchBuildsForChamp(_name: string): Promise<Build[]> {
-  return createBuildList(20);
+  return createBuildList(10);
 }
 
 export function useChampionBuilds(name: string) {
@@ -80,5 +80,5 @@ export async function getRunesReforged(): Promise<RunesReforged[]> {
   const res = await axios.get(url);
   const json = res.data;
 
-  return Convert.toRunesReforged(json);
+  return Convert.toRunesReforged(JSON.stringify(json));
 }
