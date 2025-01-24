@@ -5,10 +5,7 @@ import {
   Shards,
 } from "../../types/build.types";
 import { getRunesReforged } from "./lol";
-import { Rune, Slot } from "./lol.service.types";
-
-const runesReforged = await getRunesReforged();
-
+import { Rune, RunesReforged, Slot } from "./lol.service.types";
 function generateRandomWinRate() {
   return Math.random() * 100;
 }
@@ -72,6 +69,7 @@ function createSlots(slots: Slot[]) {
     };
   });
 }
+let runesReforged: RunesReforged[];
 
 function createFakeBuild(): Build {
   const randomPrimaryPath = getRandomPath();
@@ -108,7 +106,11 @@ function createFakeBuild(): Build {
   };
 }
 
-export function createBuildList(size: number) {
+export async function createBuildList(size: number) {
+  if (!runesReforged) {
+    runesReforged = await getRunesReforged();
+  }
+
   const output: Build[] = [];
   output.push(createFakeBuild());
   for (let i = 0; i < size; i++) {

@@ -45,7 +45,7 @@ export async function fetchChampionByName(name: string): Promise<Champion> {
 }
 
 export async function fetchBuildsForChamp(_name: string): Promise<Build[]> {
-  return createBuildList(10);
+  return await createBuildList(10);
 }
 
 export function useChampionBuilds(name: string) {
