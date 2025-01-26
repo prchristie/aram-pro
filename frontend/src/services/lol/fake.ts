@@ -5,7 +5,7 @@ import {
   Shards,
 } from "../../types/build.types";
 import { getRunesReforged } from "./lol";
-import { Rune, RunesReforged, Slot } from "./lol.service.types";
+import { Rune, RunesReforged, Slot } from "./runesReforged";
 function generateRandomWinRate() {
   return Math.random() * 100;
 }

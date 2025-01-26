@@ -8,7 +8,7 @@ import {
   Shards as StatShards,
 } from "../../../../types/build.types";
 import { HoveringWinRate } from "../winRate/WinRate";
-import "./runeDisplay.css";
+import "./rune-display.css";
 
 type Props = { runes: Runes; selectedKeystone: Keystone };
 
