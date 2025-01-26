@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { SearchBar } from "../../search/searchBar/SearchBar";
+import { SearchBar } from "../../ui/searchBar/SearchBar";
 import Fuse from "fuse.js";
 import ChampionGrid from "./ChampionGrid";
 import { useChampions } from "../../../services/lol/lol";

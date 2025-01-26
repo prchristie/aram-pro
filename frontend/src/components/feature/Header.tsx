@@ -1,4 +1,4 @@
-import AramProIcon from "../AramProIcon";
+import AramProIcon from "./AramProIcon";
 import "./header.css";
 import { Link } from "@tanstack/react-router";
 import ChampionSearchBar from "./champion-search-bar/ChampionSearchBar";
