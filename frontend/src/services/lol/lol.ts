@@ -74,8 +74,7 @@ export function useChampion(name: string) {
 }
 
 export async function getRunesReforged(): Promise<RunesReforged[]> {
-  const version = await fetchLatestVersion();
-  const url = `https://ddragon.leagueoflegends.com/cdn/${version}/data/en_US/runesReforged.json`;
+  const url = `/runesReforged.json`;
 
   const res = await axios.get(url);
   const json = res.data;
