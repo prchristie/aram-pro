@@ -8,7 +8,7 @@ import {
   SecondaryRunePath,
   ShardOption,
   Shards as StatShards,
-} from "../../../types/build.types";
+} from "../../../../types/build.types";
 import { HoveringWinRate } from "../winRate/WinRate";
 import "./runeDisplay.css";
 

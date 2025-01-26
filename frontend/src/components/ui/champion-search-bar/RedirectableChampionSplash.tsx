@@ -1,8 +1,8 @@
 import { AnchorHTMLAttributes, FC } from "react";
 import "./redirectable-champion-splash.css";
-import Image from "../Image";
+import Image from "../../Image";
 import { Link } from "@tanstack/react-router";
-import { Champion } from "../../types/build.types";
+import { Champion } from "../../../types/build.types";
 
 interface ClickableChampionSplashProps
   extends AnchorHTMLAttributes<HTMLAnchorElement> {

@@ -1,7 +1,7 @@
-import AramProIcon from "./AramProIcon";
+import AramProIcon from "../AramProIcon";
 import "./header.css";
 import { Link } from "@tanstack/react-router";
-import ChampionSearchBar from "./search/ChampionSearchBar";
+import ChampionSearchBar from "./champion-search-bar/ChampionSearchBar";
 
 export default function Header() {
   return (

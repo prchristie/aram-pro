@@ -1,4 +1,4 @@
-import { Build } from "../../../types/build.types";
+import { Build } from "../../../../types/build.types";
 import { WinRate } from "../winRate/WinRate";
 import "./build-carousel.css";
 

@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useChampion, useChampionBuilds } from "../../services/lol/lol";
-import { BuildCarousel } from "../../components/build/carousel/BuildCarousel";
+import { BuildCarousel } from "../../components/ui/build/carousel/BuildCarousel";
 import "./build-page.css";
-import { RuneDisplay } from "../../components/build/runes/RuneDisplay";
+import { RuneDisplay } from "../../components/ui/build/runes/RuneDisplay";
 import { useEffect, useState } from "react";
 import { Build } from "../../types/build.types";
 
