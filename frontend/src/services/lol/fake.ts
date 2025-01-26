@@ -17,18 +17,21 @@ function createShardOptions(winrate: number): ShardOption[] {
         url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png",
       },
       winRate: winrate,
+      id: 5008
     },
     {
       icon: {
         url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png",
       },
       winRate: winrate,
+      id: 5005
     },
     {
       icon: {
         url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/StatMods/StatModsAdaptiveForceIcon.png",
       },
       winRate: winrate,
+      id: 5007
     },
   ];
 }

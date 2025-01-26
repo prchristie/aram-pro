@@ -37,6 +37,7 @@ export type Icon = {
 export type ShardOption = {
   icon: Icon;
   winRate: number;
+  id: number;
 };
 
 export type Shards = {

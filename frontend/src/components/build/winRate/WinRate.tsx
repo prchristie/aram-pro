@@ -24,7 +24,7 @@ export function HoveringWinRate({
 }) {
   return (
     <div style={{ position: "relative" }}>
-      <div style={{position: "absolute", top: "-10px", right: "-15px", backgroundColor: "rgba(0,0,0,0.8)", padding: "1px 3px", borderRadius: "5px"}}>
+      <div style={{position: "absolute", top: "-15px", right: "-20px", backgroundColor: "rgba(0,0,0,0.8)", padding: "1px 3px", borderRadius: "5px"}}>
         <WinRate
           winRate={winRate}
         />

@@ -70,7 +70,6 @@ function RuneRow({ children }: { children: ReactNode }) {
   );
 }
 
-
 function StatShardOptionsRow({
   shardOptions,
 }: {
@@ -80,7 +79,7 @@ function StatShardOptionsRow({
     <RuneRow>
       {shardOptions.map((o) => (
         // TODO: Introduce the id for the key
-        <HoveringWinRate winRate={o.winRate} key={o.winRate}>
+        <HoveringWinRate winRate={o.winRate} key={o.id}>
           <img
             src={o.icon.url}
             width={30}
@@ -102,7 +101,7 @@ function StatShardsDisplay({ statShards }: { statShards: StatShards }) {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "10px",
+        gap: "20px",
       }}
     >
       <StatShardOptionsRow shardOptions={statShards.offense} />
@@ -141,7 +140,7 @@ function SecondaryRunePathDisplay({
         {secondaryRunePath.slots.map((s) => (
           <RuneRow>
             {s.choices.map((c) => (
-              <HoveringWinRate winRate={c.winRate}>
+              <HoveringWinRate winRate={c.winRate} key={c.name}>
                 <img src={c.icon.url} width={50} />
               </HoveringWinRate>
             ))}
