@@ -6,3 +6,10 @@
 .build-page__champion-portrait {
   border-radius: 10px;
 }
+.build-display-container {
+  display: flex;
+}
+
+.rune-display-container {
+  flex: 1.5;
+}

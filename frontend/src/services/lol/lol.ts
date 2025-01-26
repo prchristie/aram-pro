@@ -1,11 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { Build } from "../types/build.types";
-
-export type Champion = {
-  name: string;
-  portraitUrl: string;
-};
+import { Build, Champion } from "../../types/build.types";
+import { createBuildList } from "./fake";
+import { Convert, RunesReforged } from "./lol.service.types";
 
 type GetChampionsResponse = {
   type: string;
@@ -13,29 +10,6 @@ type GetChampionsResponse = {
   version: string;
   data: Map<string, { name: string }>;
 };
-
-export type GetRunesResponse = Style[];
-
-export interface Style {
-  id: number;
-  key: string;
-  icon: string;
-  name: string;
-  slots: Slot[];
-}
-
-export interface Slot {
-  runes: Rune[];
-}
-
-export interface Rune {
-  id: number;
-  key: string;
-  icon: string;
-  name: string;
-  shortDesc: string;
-  longDesc: string;
-}
 
 export async function fetchLatestVersion() {
   const url = "https://ddragon.leagueoflegends.com/api/versions.json";
@@ -70,39 +44,8 @@ export async function fetchChampionByName(name: string): Promise<Champion> {
   };
 }
 
-function createFakeBuild(winrate: number) {
-  return {
-    games: 10000,
-    runes: {
-      keystone: {
-        icon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/Domination/Electrocute/Electrocute.png",
-        },
-        name: "Eletrocute",
-      },
-      secondaryPath: {
-        icon: {
-          url: "https://ddragon.leagueoflegends.com/cdn/img/perk-images/Styles/7204_Resolve.png",
-        },
-        name: "Resolve",
-      },
-    },
-    winRate: winrate,
-  };
-}
-
-function createBuildList(size: number) {
-  const output: Build[] = [];
-  output.push(createFakeBuild(50));
-  for (let i = 0; i < size; i++) {
-    output.push(createFakeBuild(Math.random() * 100));
-  }
-
-  return output;
-}
-
 export async function fetchBuildsForChamp(_name: string): Promise<Build[]> {
-  return createBuildList(20);
+  return await createBuildList(10);
 }
 
 export function useChampionBuilds(name: string) {
@@ -128,4 +71,13 @@ export function useChampion(name: string) {
     queryFn: async () => await fetchChampionByName(name),
     staleTime: Infinity,
   });
+}
+
+export async function getRunesReforged(): Promise<RunesReforged[]> {
+  const url = `/runesReforged.json`;
+
+  const res = await axios.get(url);
+  const json = res.data;
+
+  return Convert.toRunesReforged(JSON.stringify(json));
 }
