@@ -2,7 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Build, Champion } from "../../types/build.types";
 import { createBuildList } from "./fake";
-import { Convert, RunesReforged } from "./lol.service.types";
+import { Convert, RunesReforged } from "./runesReforged";
+import { Convert as ChampionsParser } from "./champions";
 
 type GetChampionsResponse = {
   type: string;
@@ -35,8 +36,24 @@ export async function fetchChampions(): Promise<Champion[]> {
   });
 }
 
-export async function fetchChampionByName(name: string): Promise<Champion> {
+async function getChampionData() {
+  const championData = await axios.get("/champion.json");
+  const json = championData.data;
+
+  return ChampionsParser.toChampions(JSON.stringify(json));
+}
+
+export async function fetchChampionByName(
+  name: string
+): Promise<Champion | undefined> {
   const version = await fetchLatestVersion();
+
+  const champs = await getChampionData();
+  const champ = champs.data[name];
+
+  if (!champ) {
+    return undefined;
+  }
 
   return {
     name: name,
