@@ -1,5 +1,5 @@
 import { Build } from "../../../types/build.types";
-import { getWinRateBand } from "../../../util";
+import { WinRate } from "../winRate/WinRate";
 import "./build-carousel.css";
 
 type Props = {
@@ -29,11 +29,7 @@ export function BuildCarousel({ builds, onBuildSelected }: Props) {
               />
             </div>
             <div className="build-carousel__build-info">
-              <p
-                className={`build-carousel__win-rate build-carousel__win-rate--${getWinRateBand(b.winRate)}`}
-              >
-                {Math.round(b.winRate)}%
-              </p>
+              <WinRate winRate={b.winRate} className="build-carousel__win-rate" />
               <div className="build-carousel__games-played">
                 <p>{b.games}</p>
                 <p>Games</p>

@@ -7,7 +7,7 @@ import {
   ShardOption,
   Shards as StatShards,
 } from "../../../types/build.types";
-import { getWinRateBand } from "../../../util";
+import { HoveringWinRate } from "../winRate/WinRate";
 
 type Props = { runes: Runes; selectedKeystone: Keystone };
 
@@ -70,34 +70,6 @@ function RuneRow({ children }: { children: ReactNode }) {
   );
 }
 
-function HoveringWinRate({
-  winRate,
-  children,
-}: {
-  winRate: number;
-  children: ReactNode;
-}) {
-  return (
-    <div style={{ position: "relative" }}>
-      <p
-        style={{
-          position: "absolute",
-          backgroundColor: "rgba(0,0,0,0.8)",
-          fontSize: "0.9rem",
-          right: "-20px",
-          top: "-10px",
-          zIndex: 10,
-          borderRadius: "5px",
-          padding: "1px",
-          color: getWinRateBand(winRate) === "high" ? "#7ed957" : "white",
-        }}
-      >
-        {Math.round(winRate)}%
-      </p>
-      {children}
-    </div>
-  );
-}
 
 function StatShardOptionsRow({
   shardOptions,
@@ -107,7 +79,8 @@ function StatShardOptionsRow({
   return (
     <RuneRow>
       {shardOptions.map((o) => (
-        <HoveringWinRate winRate={o.winRate} key={"ad"}>
+        // TODO: Introduce the id for the key
+        <HoveringWinRate winRate={o.winRate} key={o.winRate}>
           <img
             src={o.icon.url}
             width={30}
