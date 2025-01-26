@@ -4,7 +4,7 @@ import { Build } from "../../types/build.types";
 import { BuildCarousel } from "../feature/build/carousel/BuildCarousel";
 import { RuneDisplay } from "../feature/build/runes/RuneDisplay";
 import "./build-page.css";
-import { useParams } from "@tanstack/react-router";
+import { notFound, useParams } from "@tanstack/react-router";
 
 export function BuildPage() {
   const params = useParams({ from: "/champion/$name" });
@@ -29,6 +29,10 @@ export function BuildPage() {
     builds.isPending
   ) {
     return <>Woops</>;
+  }
+
+  if(!champion.data) {
+    throw notFound();
   }
 
   return (
