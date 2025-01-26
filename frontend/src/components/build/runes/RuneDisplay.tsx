@@ -1,3 +1,5 @@
+// TODO: Fill in img alts
+
 import { ReactNode } from "@tanstack/react-router";
 import {
   Keystone,
@@ -8,6 +10,7 @@ import {
   Shards as StatShards,
 } from "../../../types/build.types";
 import { HoveringWinRate } from "../winRate/WinRate";
+import "./runeDisplay.css";
 
 type Props = { runes: Runes; selectedKeystone: Keystone };
 
@@ -16,42 +19,17 @@ export function RuneDisplay({ runes, selectedKeystone }: Props) {
     <div>
       <div>
         <h2>Runes</h2>
-        <hr style={{ border: "3px solid white" }} />
+        <hr className="divider" />
       </div>
-      <div
-        style={{
-          display: "flex",
-          paddingTop: "10px",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flex: "2",
-            flexDirection: "column",
-            gap: "20px",
-          }}
-        >
+      <div className="rune-path-container">
+        <div className="primary-path-container">
           <PrimaryRunePathDisplay
             primaryRunePath={runes.primaryRunePath}
             selectedKeystone={selectedKeystone}
           />
         </div>
-        <div
-          style={{
-            minHeight: "100%",
-            border: "3px solid white",
-          }}
-        ></div>
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "30px",
-            minWidth: "150px",
-            flex: "1.5",
-          }}
-        >
+        <div className="divider"></div>
+        <div className="secondary-path-container">
           <SecondaryRunePathDisplay
             secondaryRunePath={runes.secondaryRunePath}
           />
@@ -63,11 +41,7 @@ export function RuneDisplay({ runes, selectedKeystone }: Props) {
 }
 
 function RuneRow({ children }: { children: ReactNode }) {
-  return (
-    <div style={{ display: "flex", justifyContent: "space-around" }}>
-      {children}
-    </div>
-  );
+  return <div className="rune-row">{children}</div>;
 }
 
 function StatShardOptionsRow({
@@ -78,16 +52,11 @@ function StatShardOptionsRow({
   return (
     <RuneRow>
       {shardOptions.map((o) => (
-        // TODO: Introduce the id for the key
         <HoveringWinRate winRate={o.winRate} key={o.id}>
           <img
             src={o.icon.url}
             width={30}
-            style={{
-              background: "black",
-              borderRadius: "50%",
-              border: "1px solid gold",
-            }}
+            className="rune-icon rune-icon--shard"
           />
         </HoveringWinRate>
       ))}
@@ -97,13 +66,7 @@ function StatShardOptionsRow({
 
 function StatShardsDisplay({ statShards }: { statShards: StatShards }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "20px",
-      }}
-    >
+    <div className="stat-shards-grid-container">
       <StatShardOptionsRow shardOptions={statShards.offense} />
       <StatShardOptionsRow shardOptions={statShards.flex} />
       <StatShardOptionsRow shardOptions={statShards.defense} />
@@ -118,30 +81,17 @@ function SecondaryRunePathDisplay({
 }) {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
+      <div className="rune-path-header">
         <img src={secondaryRunePath.icon.url} alt="" />
         {secondaryRunePath.name}
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "15px",
-        }}
-      >
+      <div className="rune-path-grid-container">
         {secondaryRunePath.slots.map((s) => (
           <RuneRow>
             {s.choices.map((c) => (
               <HoveringWinRate winRate={c.winRate} key={c.name}>
-                <img src={c.icon.url} width={50} />
+                <img src={c.icon.url} width={50} className="rune-icon" />
               </HoveringWinRate>
             ))}
           </RuneRow>
@@ -160,48 +110,32 @@ function PrimaryRunePathDisplay({
 }) {
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          flexDirection: "column",
-          justifyContent: "center",
-        }}
-      >
+      <div className="rune-path-header">
         <img src={primaryRunePath.icon.url} alt="" />
         {primaryRunePath.name}
       </div>
       <RuneRow>
-        {primaryRunePath.keystones.map((ks) => {
-          console.log(ks.name, selectedKeystone.name);
-
-          return (
-            <img
-              key={ks.name}
-              src={ks.icon.url}
-              alt=""
-              width={75}
-              style={{
-                filter:
-                  ks.name === selectedKeystone.name ? "" : "grayscale(100%)",
-                flex: "1",
-              }}
-            />
-          );
-        })}
+        {primaryRunePath.keystones.map((ks) => (
+          <img
+            key={ks.name}
+            src={ks.icon.url}
+            alt=""
+            width={75}
+            className={`keystone-icon ${ks.name === selectedKeystone.name ? "" : "nonselected-keystone"}`}
+          />
+        ))}
       </RuneRow>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "30px",
-        }}
-      >
+      <div className="rune-path-grid-container">
         {primaryRunePath.slots.map((s) => (
           <RuneRow>
             {s.choices.map((c) => (
               <HoveringWinRate winRate={c.winRate}>
-                <img src={c.icon.url} key={c.name} width={60} />
+                <img
+                  src={c.icon.url}
+                  key={c.name}
+                  width={60}
+                  className="rune-icon"
+                />
               </HoveringWinRate>
             ))}
           </RuneRow>

@@ -55,14 +55,10 @@ function BuildPage() {
       </div>
       <div>
         <div
-          style={{
-            display: "flex",
-          }}
+          className="build-display-container"
         >
           <div
-            style={{
-              flex: "1.5",
-            }}
+            className="rune-display-container"
           >
             {selectedBuild ? (
               <RuneDisplay
