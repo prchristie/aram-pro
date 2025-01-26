@@ -1,5 +1,5 @@
 import { FC } from "react";
-import "./SearchBar.css";
+import "./search-bar.css";
 import { useKeyCapture } from "../../../hooks/useKeyboard";
 
 interface SearchBarProps {

@@ -1,5 +1,5 @@
 import { PropsWithChildren } from "react";
-import "./winRate.css";
+import "./win-rate.css";
 
 type WinRateProps = {
   winRate: number;
