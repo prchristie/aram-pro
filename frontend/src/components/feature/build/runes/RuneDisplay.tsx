@@ -1,5 +1,3 @@
-// TODO: Fill in img alts
-
 import { ReactNode } from "@tanstack/react-router";
 import {
   Keystone,
