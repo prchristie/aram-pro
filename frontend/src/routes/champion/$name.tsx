@@ -11,7 +11,6 @@ export const Route = createFileRoute("/champion/$name")({
     if(!champion) {
       throw notFound()
     }
-
   },
   pendingComponent: () => <>loading</>,
 });

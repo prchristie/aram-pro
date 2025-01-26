@@ -5,11 +5,16 @@ import "./index.css";
 import { routeTree } from "./routeTree.gen";
 import { createRouter, RouterProvider } from "@tanstack/react-router";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { NotFoundPage } from "./components/pages/NotFoundPage";
 
 const queryClient = new QueryClient();
 
 // Create a new router instance
-const router = createRouter({ routeTree, context: { queryClient } });
+const router = createRouter({
+  routeTree,
+  context: { queryClient },
+  defaultNotFoundComponent: NotFoundPage,
+});
 
 // Register the router instance for type safety
 declare module "@tanstack/react-router" {
