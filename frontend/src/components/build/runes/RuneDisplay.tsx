@@ -82,7 +82,10 @@ function SecondaryRunePathDisplay({
   return (
     <>
       <div className="rune-path-header">
-        <img src={secondaryRunePath.icon.url} alt="" />
+        <img
+          src={secondaryRunePath.icon.url}
+          alt={`${secondaryRunePath.name} icon`}
+        />
         {secondaryRunePath.name}
       </div>
 
@@ -111,7 +114,10 @@ function PrimaryRunePathDisplay({
   return (
     <>
       <div className="rune-path-header">
-        <img src={primaryRunePath.icon.url} alt="" />
+        <img
+          src={primaryRunePath.icon.url}
+          alt={`${primaryRunePath.icon} name`}
+        />
         {primaryRunePath.name}
       </div>
       <RuneRow>
@@ -119,7 +125,7 @@ function PrimaryRunePathDisplay({
           <img
             key={ks.name}
             src={ks.icon.url}
-            alt=""
+            alt={`${ks.name} icon`}
             width={75}
             className={`keystone-icon ${ks.name === selectedKeystone.name ? "" : "nonselected-keystone"}`}
           />
