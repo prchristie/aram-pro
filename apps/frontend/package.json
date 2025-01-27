@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "bun run generate-routes && tsc -b && vite build",
+    "build": "bun run generate-routes && bun run check-types && vite build",
     "lint": "eslint .",
+    "check-types": "tsc --noEmit",
     "preview": "bun run build && wrangler pages dev ./dist",
     "deploy": "bun run build && wrangler pages deploy ./dist",
     "generate-routes": "tsr generate",

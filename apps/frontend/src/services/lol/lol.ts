@@ -61,6 +61,7 @@ export async function fetchChampionByName(
   };
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function fetchBuildsForChamp(_name: string): Promise<Build[]> {
   return await createBuildList(10);
 }
