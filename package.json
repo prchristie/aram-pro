@@ -12,5 +12,6 @@
     "apps/*",
     "packages/*"
   ],
-  "private": "true"
+  "private": "true",
+  "name": "@repo/main"
 }
