@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "bun run generate-routes && bun run check-types && vite build",
+    "dev": "bun run --bun vite",
+    "build": "bun run generate-routes && bun run check-types && bun run --bun vite build",
     "lint": "eslint .",
     "check-types": "tsc --noEmit",
     "preview": "bun run build && wrangler pages dev ./dist",

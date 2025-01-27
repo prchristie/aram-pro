@@ -1,11 +1,22 @@
 {
-  "name": "db",
-  "module": "index.ts",
-  "type": "module",
+  "name": "@repo/db",
   "devDependencies": {
-    "@types/bun": "latest"
+    "@repo/config": "*",
+    "@types/bun": "latest",
+    "bun-types": "^1.2.0",
+    "typescript": "latest"
   },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "dev": "tsc --watch"
+  },
+  "dependencies": {
+    "bun": "^1.2.0",
+    "kysely": "^0.27.5",
+    "kysely-bun-sqlite": "^0.3.2",
+    "kysely-codegen": "^0.17.0",
+    "kysely-d1": "^0.3.0"
   }
 }
