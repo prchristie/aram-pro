@@ -1,6 +1,7 @@
 {
   "name": "@repo/db",
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250124.3",
     "@repo/config": "*",
     "@types/bun": "latest",
     "bun-types": "^1.2.0",
@@ -10,9 +11,11 @@
     ".": "./src/index.ts"
   },
   "scripts": {
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "db:generate": "cd $(dirname \"$npm_package_json\") && sh ./bin/generate_protos.sh"
   },
   "dependencies": {
+    "better-sqlite3": "^11.8.1",
     "bun": "^1.2.0",
     "kysely": "^0.27.5",
     "kysely-bun-sqlite": "^0.3.2",
