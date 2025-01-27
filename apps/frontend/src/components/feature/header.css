@@ -1,0 +1,11 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  gap: 100px;
+}
+
+.search-bar-container {
+  flex: 1;
+}
