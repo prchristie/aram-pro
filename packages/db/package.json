@@ -12,7 +12,7 @@
   },
   "scripts": {
     "dev": "tsc --watch",
-    "db:generate": "cd $(dirname \"$npm_package_json\") && sh ./bin/generate_protos.sh"
+    "db:generate": "sh ./bin/generate_protos.sh"
   },
   "dependencies": {
     "better-sqlite3": "^11.8.1",
